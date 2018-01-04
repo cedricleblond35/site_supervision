@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Client</h1>
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ customer.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ customer.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ customer.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Telephoneportable</th>
+                <td>{{ customer.telephonePortable }}</td>
+            </tr>
+            <tr>
+                <th>Telephonefixe</th>
+                <td>{{ customer.telephoneFixe }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ customer.user.email }}</td>
+            </tr>
+            <tr>
+                <th>Datenaissance</th>
+                <td>{% if customer.dateNaissance %}{{ customer.dateNaissance|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Civilite</th>
+                <td>{{ customer.civilite }}</td>
+            </tr>
+            <tr>
+                <th>Adresse1</th>
+                <td>{{ customer.adresse1 }}</td>
+            </tr>
+            <tr>
+                <th>Adresse2</th>
+                <td>{{ customer.adresse2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('customer_index') }}" class="btn btn-primary btn-xs"><i class="fa fa-list"></i> Back to the list</a>
+        </li>
+        <li>
+
+            <a href="{{ path('customer_edit', { 'id': customer.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-danger btn-xs">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

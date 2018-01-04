@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Construction_sites list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse1</th>
+                <th>Adresse2</th>
+                <th>Nbrepieces</th>
+                <th>Surfacesol</th>
+                <th>Surfacehabitable</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Datedebutprevi</th>
+                <th>Datefinprevi</th>
+                <th>Lien_cctp</th>
+                <th>Lien_plans</th>
+                <th>Lien_devis</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for construction_site in construction_sites %}
+            <tr>
+                <td><a href="{{ path('construction_site_show', { 'id': construction_site.id }) }}">{{ construction_site.id }}</a></td>
+                <td>{{ construction_site.adresse1 }}</td>
+                <td>{{ construction_site.adresse2 }}</td>
+                <td>{{ construction_site.nbrePieces }}</td>
+                <td>{{ construction_site.surfaceSol }}</td>
+                <td>{{ construction_site.surfaceHabitable }}</td>
+                <td>{% if construction_site.dateDebut %}{{ construction_site.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if construction_site.dateFin %}{{ construction_site.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if construction_site.dateDebutPrevi %}{{ construction_site.dateDebutPrevi|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if construction_site.dateFinPrevi %}{{ construction_site.dateFinPrevi|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ construction_site.liencctp }}</td>
+                <td>{{ construction_site.lienplans }}</td>
+                <td>{{ construction_site.liendevis }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('construction_site_show', { 'id': construction_site.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('construction_site_edit', { 'id': construction_site.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('construction_site_new') }}">Create a new construction_site</a>
+        </li>
+    </ul>
+{% endblock %}

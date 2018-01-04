@@ -1,0 +1,8 @@
+{# empty Twig template #}
+{% block radio_widget -%}
+    {% spaceless %}
+        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+            <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ value }}
+        </label>
+    {% endspaceless %}
+{%- endblock radio_widget %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Lots list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Libelle</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lot in lots %}
+            <tr>
+                <td><a href="{{ path('lot_show', { 'id': lot.id }) }}">{{ lot.id }}</a></td>
+                <td>{{ lot.numero }}</td>
+                <td>{{ lot.libelle }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('lot_show', { 'id': lot.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('lot_edit', { 'id': lot.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lot_new') }}">Create a new lot</a>
+        </li>
+    </ul>
+{% endblock %}

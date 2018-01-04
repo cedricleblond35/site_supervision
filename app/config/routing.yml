@@ -1,0 +1,4 @@
+site_supervision:
+    resource: "@SiteSupervisionBundle/Controller/"
+    type:     annotation
+    prefix:   /

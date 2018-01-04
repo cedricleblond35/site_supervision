@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Type_constructions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Designation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_construction in type_constructions %}
+            <tr>
+                <td><a href="{{ path('type_construction_show', { 'id': type_construction.id }) }}">{{ type_construction.id }}</a></td>
+                <td>{{ type_construction.designation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('type_construction_show', { 'id': type_construction.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('type_construction_edit', { 'id': type_construction.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('type_construction_new') }}">Create a new type_construction</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Construction_site</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ construction_site.id }}</td>
+            </tr>
+            <tr>
+                <th>Adresse1</th>
+                <td>{{ construction_site.adresse1 }}</td>
+            </tr>
+            <tr>
+                <th>Adresse2</th>
+                <td>{{ construction_site.adresse2 }}</td>
+            </tr>
+            <tr>
+                <th>Nbrepieces</th>
+                <td>{{ construction_site.nbrePieces }}</td>
+            </tr>
+            <tr>
+                <th>Surfacesol</th>
+                <td>{{ construction_site.surfaceSol }}</td>
+            </tr>
+            <tr>
+                <th>Surfacehabitable</th>
+                <td>{{ construction_site.surfaceHabitable }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{% if construction_site.dateDebut %}{{ construction_site.dateDebut|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{% if construction_site.dateFin %}{{ construction_site.dateFin|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datedebutprevi</th>
+                <td>{% if construction_site.dateDebutPrevi %}{{ construction_site.dateDebutPrevi|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefinprevi</th>
+                <td>{% if construction_site.dateFinPrevi %}{{ construction_site.dateFinPrevi|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lien_cctp</th>
+                <td>{{ construction_site.liencctp }}</td>
+            </tr>
+            <tr>
+                <th>Lien_plans</th>
+                <td>{{ construction_site.lienplans }}</td>
+            </tr>
+            <tr>
+                <th>Lien_devis</th>
+                <td>{{ construction_site.liendevis }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('construction_site_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('construction_site_edit', { 'id': construction_site.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

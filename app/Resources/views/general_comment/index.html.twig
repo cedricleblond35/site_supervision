@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>General_comments list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Commentaire</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for general_comment in general_comments %}
+            <tr>
+                <td><a href="{{ path('general_comment_show', { 'id': general_comment.id }) }}">{{ general_comment.id }}</a></td>
+                <td>{{ general_comment.commentaire }}</td>
+                <td>{% if general_comment.date %}{{ general_comment.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('general_comment_show', { 'id': general_comment.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('general_comment_edit', { 'id': general_comment.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('general_comment_new') }}">Create a new general_comment</a>
+        </li>
+    </ul>
+{% endblock %}

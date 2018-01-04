@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>General_comment</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ general_comment.id }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ general_comment.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if general_comment.date %}{{ general_comment.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('general_comment_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('general_comment_edit', { 'id': general_comment.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
