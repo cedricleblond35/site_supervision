@@ -83,8 +83,4 @@ class SecurityController extends Controller
         ));
     }
 
-    public function indexAction($name)
-    {
-        return $this->render('', array('name' => $name));
-    }
 }
