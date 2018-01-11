@@ -5,7 +5,8 @@
     "autoload": {
         "psr-4": {
             "": "src/",
-            "SiteSupervisionBundle\\": "src/SiteSupervisionBundle"
+            "SiteSupervisionBundle\\": "src/SiteSupervisionBundle",
+            "psr-0": { "": "src/" }
         },
         "classmap": [
             "app/AppKernel.php",

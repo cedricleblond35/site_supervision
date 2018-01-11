@@ -17,7 +17,7 @@ class SecurityController extends Controller
     /**
      * @Route("/register", name="user_registration")
      */
-    public function registerAction(Request $request, $form)
+    public function registerAction(Request $request)
     {
         // 1) build the form
         $user  = new User();
