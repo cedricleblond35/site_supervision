@@ -1,45 +1,43 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
-
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-    providers:
-        in_memory:
-            memory: ~
-
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
-        #dev:
-        #    pattern: ^/(_(profiler|wdt)|css|images|js)/
-        #    security: false
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
 
         main:
             pattern: ^/   # tous les url sont concernés
-            anonymous: ~
+            anonymous: ~  #
+
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             #http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
             #formulaire de login
             form_login:
                 login_path: login   #chemin du formulaire
                 check_path: login   #chemin pour traiter le formulaire
                 csrf_token_generator: security.csrf.token_manager
-                default_target_path: main
             logout:
-                path: logout       #chemin pour se deconnecté
-                target: home       #une fois deconnecté redirection ds home qui est configuré dans routing.yml
+                 path: logout       #chemin pour se deconnecté
+                 target: home       #une fois deconnecté redirection ds home qui est configuré dans routing.yml
             remember_me:            #cookie pour se reconnecter
                 secret:   '%secret%'
                 lifetime: 60    #temps de durée de vie du cookie en seconde
                 path:     /           #fonctionnelle sur tous url   /admin => seulement pour admin
 
+    providers:
+        main_provider:
+            entity:
+                class:              SiteSupervisionBundle:User
+                property:           email              #se connecter avec son username ou email ....
 
     encoders:
-        SiteSupervisionBundle\Entity\User:
+        SiteSupervisionBundle\Entity\User:     #Modifier FarmBundle
             algorithm: bcrypt       #type de cryptage
             cost: 10
 

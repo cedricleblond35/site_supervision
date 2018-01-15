@@ -9,7 +9,6 @@ use SiteSupervisionBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class SecurityController extends Controller
@@ -60,7 +59,7 @@ class SecurityController extends Controller
         }
         
         return $this->render('registration/register.html.twig',
-            ['form' => $form->createView()]);
+            ['userForm' => $form->createView()]);
     }
 
 
@@ -83,8 +82,4 @@ class SecurityController extends Controller
         ));
     }
 
-    public function indexAction($name)
-    {
-        return $this->render('', array('name' => $name));
-    }
 }
