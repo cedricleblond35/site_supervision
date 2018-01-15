@@ -34,7 +34,7 @@
                     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
-                <form action="{{ path('login') }}" method="post">
+                <form action="{{ path('security_login') }}" method="post">
 
                     <div>
                         <label for="email">Identifiant :</label>
@@ -42,7 +42,7 @@
                     </div>
                     <div>
                         <label for="password">Mot  de passe :</label>
-                        <input type="password" class="form-control"  id="password" name="_password" required="required" />
+                        <input type="password" id="password" name="_password" required="required" />
                     </div>
                     <div>
 

@@ -22,8 +22,9 @@
 
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            {% if is_granted('ROLE_SUPER_ADMIN') %}
+            {% if is_granted('ROLE_SUPERADMIN') %}
                 {% include 'menu/super_admin.twig' %}
+
             {% elseif  is_granted('ROLE_ADMIN_COMPANY_PRINCIPAL') %}
                 {% include 'menu/admin_company_principal.twig' %}
 
@@ -33,6 +34,7 @@
 
             {% elseif  is_granted('ROLE_CUSTOMER') %}
                 {% include 'menu/customer.html.twig' %}
+
             {% endif %}
 
 

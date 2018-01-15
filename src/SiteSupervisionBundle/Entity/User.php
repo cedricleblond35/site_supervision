@@ -54,6 +54,13 @@ class User implements UserInterface
      */
     private $password;
 
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
     /**
      * @var array
      *
@@ -109,7 +116,7 @@ class User implements UserInterface
     public function __construct()
     {
         // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
+        //$this->salt = md5(uniqid('', true));
     }
 
 
@@ -369,4 +376,22 @@ class User implements UserInterface
 
         return $this;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
 }

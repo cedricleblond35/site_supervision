@@ -26,7 +26,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
-class AddSuperUserCommand extends ContainerAwareCommand
+class AddUserCommand extends ContainerAwareCommand
 {
     /**
      * {@inheritdoc}
@@ -35,41 +35,33 @@ class AddSuperUserCommand extends ContainerAwareCommand
     {
         $this
             // the name of the command (the part after "bin/console")
-            ->setName('commandPerso:create-user')
+            ->setName('site_supervision:Create-user')
             ->setDescription('Création d\'un nouveau Role super admin')
             ->setDefinition(array(
                 new InputArgument('email', InputArgument::REQUIRED, 'The email'),
                 new InputArgument('password', InputArgument::REQUIRED, 'The password'),
                 new InputArgument('role', InputArgument::REQUIRED,  'Insérer son role [ROLE_CUSTOMER, ROLE_USER_COMPANY_PRINCIPAL,ROLE_USER_COMPANY, ROLE_ADMIN, ROLE_SUPERADMIN] :')
             ))
-        
-            // the full command description shown when running the command with
-            // the "--help" option
             ->setHelp('Cette commande permet de créer un utilisateur')
         ;
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        // outputs multiple lines to the console (adding "\n" at the end of each line)
-        
-
-        $email = $input->getArgument('email');
-        $password = $input->getArgument('password');
-        $role = $input->getArgument('role');
-        
+        //create object user
         $user = new User();
-        $user->setEmail($email);
-        $user->setPassword($password);
-        $user->setRoles($role);
-        $style = new OutputFormatterStyle('white', 'green', array('bold'));
-        $output->getFormatter()->setStyle('goodluck', $style);
-        $output->writeln('<goodluck>The user account has been created :)</goodluck>');
+        $user->setEmail($input->getArgument('email'));
+        $user->setPassword($input->getArgument('password'));
+        $user->setRoles($input->getArgument('role'));
 
         try{
-
             $manipulator = $this->getContainer()->get('Capvisu.ManagerUser');
             $manipulator->create($user);
+            
+            //message ok
+            $style = new OutputFormatterStyle('white', 'green', array('bold'));
+            $output->getFormatter()->setStyle('goodluck', $style);
+            $output->writeln('<goodluck>The user account has been created :)</goodluck>');
 
         } catch (Exception $error){
 
@@ -79,10 +71,6 @@ class AddSuperUserCommand extends ContainerAwareCommand
             throw $error;
 
         }
-
-
-
-
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)
@@ -142,11 +130,10 @@ class AddSuperUserCommand extends ContainerAwareCommand
                 "<comment>Utilisateur de l entreprise principale</comment>: ROLE_USER_COMPANY_PRINCIPAL\n",
                 "<comment>Client de l entreprise</comment>: ROLE_CUSTOMER\n",
                 "<comment>Utilisateur entreprise sous-traitant / partenaire</comment>: ROLE_USER_COMPANY\n",
-
-                
             );
             
             $question = new Question($line);
+            //Autocompleter
             $question->setAutocompleterValues($roleDefault);
             //delete space
             $question->setNormalizer(function($role){

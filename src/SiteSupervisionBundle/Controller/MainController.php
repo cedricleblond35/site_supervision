@@ -9,7 +9,7 @@ class MainController extends Controller
 {
     /**
      * 
-     * @Route("/", name="main")
+     * @Route("/", name="home")
      */
     public function indexAction($name)
     {

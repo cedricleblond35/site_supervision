@@ -47,6 +47,7 @@ class CustomerController extends Controller
     public function newAction(Request $request)
     {
 
+        //select the city according to the department
         if($request->isXmlHttpRequest()){
             $tmpVille = array();
             $cp = $request->request->get('some_var_name');
@@ -73,9 +74,7 @@ class CustomerController extends Controller
 
                 $arrData = ['output' => $tmpVille];
                 return new JsonResponse($arrData);
-
             }
-
         }
 
         // 1) build the form
@@ -95,7 +94,11 @@ class CustomerController extends Controller
 
         if($form->isSubmitted() && $form->isValid())
         {
-            // 3) Encode the password (you could also do this via Doctrine listener)
+            dump($user);
+            die();
+            $userService = $this->container-$this->get('Capvisu.ManagerUser');
+            $userService->create($user);
+/*            // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
             $user->setLastConnection(new \DateTime());
@@ -118,7 +121,7 @@ class CustomerController extends Controller
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
-            $em->flush();
+            $em->flush();*/
 
             //créer le message de succes
             $this->addFlash("success", "Le compte à bien été créé");
