@@ -4,6 +4,7 @@ namespace SiteSupervisionBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * VillesFranceFree
@@ -145,9 +146,9 @@ class VillesFranceFree
      */
     public function __construct()
     {
-        $this->compagnies = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->customers = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->construction_sites = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->compagnies = new ArrayCollection();
+        $this->customers = new ArrayCollection();
+        $this->construction_sites = new ArrayCollection();
     }
 
     /**

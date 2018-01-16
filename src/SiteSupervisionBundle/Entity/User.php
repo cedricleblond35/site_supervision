@@ -56,12 +56,6 @@ class User implements UserInterface
 
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="array")
@@ -377,21 +371,5 @@ class User implements UserInterface
         return $this;
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * @param mixed $plainPassword
-     */
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-    }
 
 }

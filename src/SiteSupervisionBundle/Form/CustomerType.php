@@ -83,8 +83,7 @@ class CustomerType extends AbstractType
                 // use the User.username property as the visible option string
                 "choice_label" => "villeNom",
                 'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('u')
-                        ->where("u.id = 1");
+                return $er->createQueryBuilder('u');
                 },
                 ])
             
@@ -110,8 +109,7 @@ class CustomerType extends AbstractType
                 'required'   => false,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12'),
                 'label' => 'Notes',
-            ))
-        ;
+            ));
     }
     
     /**

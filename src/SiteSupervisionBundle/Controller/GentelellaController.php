@@ -29,27 +29,18 @@ class GentelellaController extends Controller
      */
     public function gentelellaAction(Request $request, $page)
     {
-        $user = $this->getUser();
-        $role = $this->container->get('security.role_hierarchy');
-        dump($role);
-        if(in_array("ROLE_SUPER_ADMIN", $user->getRoles())){
-            //return $this->redirectToRoute('customer_index');
-        }
-        
-
-        $templateName = basename(sprintf('gentelella/%s.html.twig', $page));
-        if ($templateName !== sprintf('%s.html.twig', $page)) {
-            throw $this->createNotFoundException('Page not found');
-        }
-        if (!$this->get('templating')->exists(sprintf('gentelella/%s', $templateName))) {
-            throw $this->createNotFoundException(
-                sprintf(
-                    'Page "%s" not found',
-                    $page
-                )
-            );
-        }
-        //$this->container->get('userbundle_service');
+//        $templateName = basename(sprintf('gentelella/%s.html.twig', $page));
+//        if ($templateName !== sprintf('%s.html.twig', $page)) {
+//            throw $this->createNotFoundException('Page not found');
+//        }
+//        if (!$this->get('templating')->exists(sprintf('gentelella/%s', $templateName))) {
+//            throw $this->createNotFoundException(
+//                sprintf(
+//                    'Page "%s" not found',
+//                    $page
+//                )
+//            );
+//        }
         return $this->render(sprintf('gentelella/%s.html.twig', $page));
     }
 

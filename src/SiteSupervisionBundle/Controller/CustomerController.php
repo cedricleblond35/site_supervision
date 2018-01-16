@@ -55,7 +55,7 @@ class CustomerController extends Controller
             {
                 $data = $this->getDoctrine()->getRepository('SiteSupervisionBundle:VillesFranceFree')->findBy(
                     array('villeCodePostal' => $cp),
-                    array('villeNom' => 'DESC')
+                    array('villeNom' => 'ASC')
                 );
 
 
@@ -91,37 +91,11 @@ class CustomerController extends Controller
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid())
         {
-            dump($user);
-            die();
-            $userService = $this->container-$this->get('Capvisu.ManagerUser');
+            $userService = $this->container->get('Capvisu.ManagerUser');
             $userService->create($user);
-/*            // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
-            $user->setLastConnection(new \DateTime());
-            $user->setIsActive(true);
-            $user->setToken('');
-            $user->setConnectionFailure('0');
 
-
-            if($user->getRoles() == "ROLE_CUSTOMER")
-            {
-                $customer = new Customer();
-                $user->setCustomer($customer);
-
-            } elseif ($user->getRoles() == "ROLE_USER_COMPANY_PRINCIPAL")
-            {
-                $compagny = new Company();
-                $user->setCompagny($compagny);
-            }
-
-            // 4) save the User!
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();*/
 
             //créer le message de succes
             $this->addFlash("success", "Le compte à bien été créé");
@@ -155,7 +129,7 @@ class CustomerController extends Controller
     /**
      * Displays a form to edit an existing customer entity.
      *
-     * @Route("/edit/{id}", name="customer_edit")
+     * @Route("/{id}/edit", name="customer_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction($id, Request $request, Customer $customer)

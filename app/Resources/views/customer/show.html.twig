@@ -1,63 +1,157 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}Client{% endblock page_title %}
 {% block page_content %}
-    <h1>Client</h1>
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ customer.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ customer.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ customer.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Telephoneportable</th>
-                <td>{{ customer.telephonePortable }}</td>
-            </tr>
-            <tr>
-                <th>Telephonefixe</th>
-                <td>{{ customer.telephoneFixe }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ customer.user.email }}</td>
-            </tr>
-            <tr>
-                <th>Datenaissance</th>
-                <td>{% if customer.dateNaissance %}{{ customer.dateNaissance|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Civilite</th>
-                <td>{{ customer.civilite }}</td>
-            </tr>
-            <tr>
-                <th>Adresse1</th>
-                <td>{{ customer.adresse1 }}</td>
-            </tr>
-            <tr>
-                <th>Adresse2</th>
-                <td>{{ customer.adresse2 }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <ul>
-        <li>
-            <a href="{{ path('customer_index') }}" class="btn btn-primary btn-xs"><i class="fa fa-list"></i> Back to the list</a>
-        </li>
-        <li>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Fiche client</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ path('customer_edit', { 'id': customer.id }) }}" ><i class="fa fa-pencil"></i> Modifier la fiche client</a></li>
+                                        <li><a href="{{ path('customer_delete', { 'id': customer.id }) }}" ><i class="fa fa-trash-o"></i> Supprimer</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a></li>
 
-            <a href="{{ path('customer_edit', { 'id': customer.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer" class="btn btn-danger btn-xs">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                                <div class="profile_img">
+                                    <div id="crop-avatar">
+                                        <!-- Current avatar -->
+                                        <img class="img-responsive avatar-view" src="{{ asset('assets/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
+                                    </div>
+                                </div>
+                                <h3>{{ customer.civilite }} {{ customer.prenom }} {{ customer.nom }}</h3>
+
+                                <ul class="list-unstyled user_data">
+                                    <li>
+                                        <i class="fa fa-map-marker user-profile-icon"></i> {{ customer.villesFranceFree.villeDepartement }}, {{ customer.villesFranceFree.villeNomReel }}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone user-profile-icon"></i> {{ customer.telephonePortable }} / {{ customer.telephoneFixe }}
+                                    </li>
+                                    <li class="m-top-xs">
+                                        <i class="fa fa-envelope-open-o user-profile-icon"></i>
+                                        <a href="mailto:?to={{ customer.user.email }}" target="_blank">{{ customer.user.email }}</a>
+                                    </li>
+                                </ul>
+
+
+                                <br />
+
+                                <!-- start skills -->
+                                <h4>Détails</h4>
+                                <ul class="list-unstyled user_data">
+                                    <li>
+                                        <p>Date de naissance : {% if customer.dateNaissance %}{{ customer.dateNaissance|date('Y-m-d') }}{% endif %}</p>
+                                    </li>
+                                    <li>
+                                        <p>PMR : {% if customer.pmr %}Oui {% else %}Non{% endif %}</p>
+                                    </li>
+                                    <li>
+                                        <h5>Adresse :</h5>
+                                        <p>{{ customer.adresse1 }}</p>
+                                        <p>{{ customer.adresse2 }}</p>
+                                    </li>
+                                </ul>
+                                <!-- end of skills -->
+
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Notes sur le client</a>
+                                        </li>
+                                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste des chantiers</a>
+                                        </li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                                            <!-- start recent activity -->
+                                            {{ customer.note }}
+                                            <!-- end recent activity -->
+
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                            <a href="" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Créer un dossier chantier</a>
+                                            <!-- start user projects -->
+                                            <table class="data table table-striped no-margin">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Type</th>
+                                                    <th>Ville</th>
+                                                    <th>CCTP</th>
+                                                    <th>Plans</th>
+                                                    <th>Surface au sol</th>
+                                                    <th>Surface habitable</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td><a href="">Construction neuve</a> </td>
+                                                    <td>Rennes</td>
+                                                    <td><a href="">cctp</a></td>
+                                                    <td><a href="">Plans</a></td>
+                                                    <td>180</td>
+                                                    <td>150</td>
+                                                    <td>
+                                                        <a href="{{ path('customer_show', { 'id': customer.id }) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Détail</a>
+                                                        <a href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier</a>
+                                                        <a href="" class="btn btn-success btn-xs"><i class="fa fa-handshake-o"></i> Clôturer</a>
+                                                        <a href="{{ path('construction_site_delete', { 'id': customer.id }) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Supprimer</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- end user projects -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 {% endblock %}
+
+{% block javascripts %}
+
+    <!-- jQuery -->
+    <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('assets/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset('assets/vendors/nprogress/nprogress.js') }}"></script>
+    <!-- morris.js -->
+    <script src="{{ asset('assets/vendors/raphael/raphael.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/morris.js/morris.min.js') }}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{{ asset('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset('assets/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+
+
+
+
+
+
+{% endblock javascripts %}

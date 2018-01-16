@@ -131,8 +131,10 @@ class Customer
     /**
      * @var \SiteSupervisionBundle\Entity\VillesFranceFree
      *
-     * @ORM\ManyToOne(targetEntity="\SiteSupervisionBundle\Entity\VillesFranceFree", inversedBy="customers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(
+     *     targetEntity="\SiteSupervisionBundle\Entity\VillesFranceFree",
+     *     inversedBy="customers")
+     * @ORM\JoinColumn(name="villes_france_free_id", referencedColumnName="id")
      *
      */
     private $villesFranceFree;

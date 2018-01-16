@@ -41,48 +41,49 @@ class User
         
     }
 
-    public function create(\SiteSupervisionBundle\Entity\User $userForm)
+    public function create(\SiteSupervisionBundle\Entity\User $user)
     {
+
+
         //instancier un utilisateur
-        $user = new \SiteSupervisionBundle\Entity\User();
         $password = "";
 
-        if($userForm->getPassword() != "")
+        if($user->getPassword() != "")
         {
-            $password = $this->container->get('security.password_encoder')->encodePassword($userForm, $userForm->getPassword());
+                $user->setPassword(
+                    $this->container->get('security.password_encoder')
+                        ->encodePassword($user, $user->getPassword())
+            );
         }
 
-        $user->setEmail($userForm->getEmail());
-        $user->setPassword($password);
         $user->setLastConnection(new \DateTime());
         $user->setIsActive(true);
         $user->setToken('');
         $user->setConnectionFailure('0');
-        $user->setRoles($userForm->getRoles());
 
-        switch ($userForm->getRoles())
-        {
-            case "ROLE_ADMIN":
-            case "ROLE_SUPERADMIN":
-                $user->setCustomer(null);
-                $user->setCompagny(null);
-                break;
-            
-            case "ROLE_USER_COMPANY_PRINCIPAL":
-            case "ROLE_USER_COMPANY":
-                $compagny = new Company();
-                $user->setCustomer(null);
-                $user->setCompagny($compagny);
-                break;
-            
-            case "ROLE_CUSTOMER":
-                $customer = new Customer();
-                $user->setCustomer($customer);
-                $user->setCompagny(null);
-                break;
-                
-        }
-        
+
+//        switch ($user->getRoles())
+//        {
+//            case "ROLE_ADMIN":
+//            case "ROLE_SUPERADMIN":
+//                $user->setCustomer(null);
+//                $user->setCompagny(null);
+//                break;
+//
+//            case "ROLE_USER_COMPANY_PRINCIPAL":
+//            case "ROLE_USER_COMPANY":
+//                $user->setCustomer(null);
+//                $user->setCompagny($compagny);
+//                break;
+//
+//            case "ROLE_CUSTOMER":
+//                $customer = new Customer();
+//                $user->setCustomer($customer);
+//                $user->setCompagny(null);
+//                break;
+//
+//        }
+
 
         //persister les données
         $this->em->persist($user);
