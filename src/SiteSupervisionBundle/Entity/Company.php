@@ -32,9 +32,9 @@ class Company
      * @var string
      *
      * @Assert\NotBlank(message="Veuillez donner le nom de l'entreprise")
-     * @ORM\Column(name="nom_societe", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $nomSociete;
+    private $nom;
 
     /**
      * @var string

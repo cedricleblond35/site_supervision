@@ -1,51 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block page_content %}
-    <h1>Companies list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nomsociete</th>
-                <th>Adresse1</th>
-                <th>Adresse2</th>
-                <th>Codepostal</th>
-                <th>Telephonefixe</th>
-                <th>Email</th>
-                <th>Siret</th>
-                <th>Ape</th>
-                <th>Commentaire</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for company in companies %}
-            <tr>
-                <td><a href="{{ path('company_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
-                <td>{{ company.nomSociete }}</td>
-                <td>{{ company.adresse1 }}</td>
-                <td>{{ company.adresse2 }}</td>
-                <td>{{ company.codePostal }}</td>
-                <td>{{ company.telephonefixe }}</td>
-                <td>{{ company.email }}</td>
-                <td>{{ company.siret }}</td>
-                <td>{{ company.ape }}</td>
-                <td>{{ company.commentaire }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('company_show', { 'id': company.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('company_edit', { 'id': company.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+    {# message flash ---------------------------------- #}
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ label }}">
+                {{ flash }}
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    {% endfor %}
+    {# message flash ---------------------------------- #}
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Liste des clients</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <p></p>
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table">
+                        <thead>
+                        <tr class="headings">
+                            <th class="columns-title" style="display: table-cell">Entreprise</th>
+                            <th class="columns-title" style="display: table-cell">Activité</th>
+                            <th class="columns-title" style="display: table-cell">Téléphone</th>
+                            <th class="columns-title" style="display: table-cell">Email</th>
+                            <th class="columns-title" style="display: table-cell">Contact</th>
+                            <th class="columns-title" style="display: table-cell">Téléphone portable</th>
+                            <th class="columns-title" style="display: table-cell">Email</th>
+                            <th class="column-title no-link last" style="display: table-cell">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for company in companies %}
+                            <tr >
+                                <td>{{ companies.nomSociete }}</td>
+                                <td></td>
+                                <td>{{ companies.telephonefixe }}</td>
+                                <td>{{ companies.email }}</td>
+                                <td>{{ companies.employee.nom }} {{ companies.employee.prenom }}</td>
+                                <td>{{ companies.employee.telephone_portable }}</td>
+                                <td>{{ companies.employee.email }}</td>
+                                <td>
+                                    <a href="{{ path('company_show', { 'id': companies.id }) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Détail</a>
+                                    <a href="{{ path('company_edit', { 'id': companies.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier</a>
+                                    <a href="{{ path('company_delete', { 'id': companies.id }) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <ul>
         <li>
