@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>61ad3bea-e948-47fb-b81a-88b91d7f3042</OriginalElement>
+  <nodes>
+    <node x="878.3029176732948" y="668.7875859505668">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot</node>
+    <node x="168.63612711391943" y="1093.9091246980115">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site</node>
+    <node x="800.347415219658" y="1266.8294739416408">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.image</node>
+    <node x="1284.8132317413122" y="201.52778293997403">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.employee</node>
+    <node x="-288.1453469188018" y="1121.4513381429927">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.general_comment</node>
+    <node x="84.26333395279687" y="420.89593012451206">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.villes_france_free</node>
+    <node x="813.3068202936258" y="132.562349005761">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.company</node>
+    <node x="-596.9882921390076" y="637.9743542092548">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.customer</node>
+    <node x="1141.3315254237289" y="928.1274576271187">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.article</node>
+    <node x="-568.603419438766" y="114.87455863222449">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.user</node>
+    <node x="927.242334138636" y="934.285448801338">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot_construction_site</node>
+    <node x="1186.017791970803" y="1270.9698905109487">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.product</node>
+    <node x="-272.17723976766047" y="1345.365159601165">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.type_construction</node>
+    <node x="570.0000000000001" y="934.1906708790187">61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site_lot</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.product" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.article">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.type_construction" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.company">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.customer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.company" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.villes_france_free">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.image" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.user" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.customer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.user" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.company">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.villes_france_free">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.image" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.product">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.image" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.article">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot_construction_site" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.customer" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.villes_france_free">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site_lot" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.general_comment" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.employee" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.company">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.construction_site_lot" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.article" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.article" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.article">
+      <point x="57.5" y="-100.0" />
+      <point x="1313.8315254237289" y="913.1274576271187" />
+      <point x="1319.8315254237289" y="907.1274576271187" />
+      <point x="1386.3315254237289" y="907.1274576271187" />
+      <point x="1392.3315254237289" y="913.1274576271187" />
+      <point x="1392.3315254237289" y="972.1274576271187" />
+      <point x="1386.3315254237289" y="978.1274576271187" />
+      <point x="115.0" y="-50.0" />
+    </edge>
+    <edge source="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot_construction_site" target="61ad3bea-e948-47fb-b81a-88b91d7f3042.TABLE:capvisu.lot">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5397191574724173" x="440.29102397323913" y="945.4724028990894" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+  </Categories>
+</Diagram>
+
