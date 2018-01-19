@@ -53,17 +53,6 @@ class Company
     /**
      * @var string
      * @Assert\Regex(
-     *     pattern="/^\d{4}\d$/",
-     *     match=false,
-     *     message="Le numero de téléphone n'est pas valide"
-     * )
-     * @ORM\Column(name="code_postal", type="string", length=5)
-     */
-    private $codePostal;
-
-    /**
-     * @var string
-     * @Assert\Regex(
      *     pattern="/^\d{9}\d$/",
      *     match=false,
      *     message="Le numero de téléphone n'est pas valide"
@@ -113,25 +102,24 @@ class Company
     private $commentaire;
 
     //////////////////////////////////////////////////----------------------------------------------------------
-    /**
-     * @var \SiteSupervisionBundle\Entity\User
-     *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User", mappedBy="compagny")
-     */
-    private $user;
+    
 
 
     /**
      * @var \SiteSupervisionBundle\Entity\Employee
      *
-     * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Employee", mappedBy="compagny")
+     * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Employee", mappedBy="company", cascade={"ALL"})
+     * 
      */
     private $employees;
 
     /**
      * @var \SiteSupervisionBundle\Entity\VillesFranceFree
      *
-     * @ORM\ManyToOne(targetEntity="\SiteSupervisionBundle\Entity\VillesFranceFree", inversedBy="compagnies", cascade={"persist"}))
+     * @ORM\ManyToOne(
+     *     targetEntity="\SiteSupervisionBundle\Entity\VillesFranceFree",
+     *     inversedBy="companies")
+     * @ORM\JoinColumn(name="villes_france_free_id", referencedColumnName="id")
      *
      */
     private $villesFranceFree;
@@ -140,7 +128,7 @@ class Company
     /**
      * @var \SiteSupervisionBundle\Entity\Lot
      *
-     * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Lot", mappedBy="compagny")
+     * @ORM\ManyToMany(targetEntity="\SiteSupervisionBundle\Entity\Lot")
      *
      */
     private $lots;
@@ -155,6 +143,7 @@ class Company
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
         $this->lots = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    
 
     /**
      * Get id
@@ -167,27 +156,27 @@ class Company
     }
 
     /**
-     * Set nomSociete
+     * Set nom
      *
-     * @param string $nomSociete
+     * @param string $nom
      *
      * @return Company
      */
-    public function setNomSociete($nomSociete)
+    public function setNom($nom)
     {
-        $this->nomSociete = $nomSociete;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get nomSociete
+     * Get nom
      *
      * @return string
      */
-    public function getNomSociete()
+    public function getNom()
     {
-        return $this->nomSociete;
+        return $this->nom;
     }
 
     /**
@@ -236,30 +225,6 @@ class Company
     public function getAdresse2()
     {
         return $this->adresse2;
-    }
-
-    /**
-     * Set codePostal
-     *
-     * @param string $codePostal
-     *
-     * @return Company
-     */
-    public function setCodePostal($codePostal)
-    {
-        $this->codePostal = $codePostal;
-
-        return $this;
-    }
-
-    /**
-     * Get codePostal
-     *
-     * @return string
-     */
-    public function getCodePostal()
-    {
-        return $this->codePostal;
     }
 
     /**
@@ -380,30 +345,6 @@ class Company
     public function getCommentaire()
     {
         return $this->commentaire;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \SiteSupervisionBundle\Entity\User $user
-     *
-     * @return Company
-     */
-    public function setUser(\SiteSupervisionBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \SiteSupervisionBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**

@@ -116,7 +116,9 @@ class Customer
     /**
      * @var \SiteSupervisionBundle\Entity\User
      *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User", mappedBy="customer", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User",inversedBy="customer", cascade={"ALL"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * 
      */
     private $user;
     

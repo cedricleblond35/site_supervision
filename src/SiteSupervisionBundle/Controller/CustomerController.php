@@ -5,6 +5,7 @@ namespace SiteSupervisionBundle\Controller;
 use SiteSupervisionBundle\Entity\Customer;
 use SiteSupervisionBundle\Entity\User;
 use SiteSupervisionBundle\Entity\VillesFranceFree;
+use SiteSupervisionBundle\Form\CustomerType;
 use SiteSupervisionBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -78,12 +79,14 @@ class CustomerController extends Controller
         }
 
         // 1) build the form
-        // on va créer un utilisateur qui est un client
+        // we will create a user client who is a user
+        // follow the schema for persistence of data
         $user  = new User();
         $customer = new Customer();
-        $customer->setUser($user);
         $user->setCustomer($customer);
-        $form = $this->createForm(UserType::class, $user, array(
+        $customer->setUser($user);
+
+        $form = $this->createForm(CustomerType::class, $customer, array(
             'action' => $this->generateUrl('customer_new'),
             'method' => 'POST',
         ));
@@ -93,8 +96,8 @@ class CustomerController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $userService = $this->container->get('Capvisu.ManagerUser');
-            $userService->create($user);
+            $customerService = $this->container->get('Capvisu.ManagerCustomer');
+            $customerService->create($customer);
 
 
             //créer le message de succes
@@ -105,7 +108,7 @@ class CustomerController extends Controller
         }
 
         return $this->render('customer/new.html.twig', array(
-            'customer' => $customer,
+            //'customer' => $customer,
             'form' => $form->createView(),
         ));
     }
@@ -176,8 +179,8 @@ class CustomerController extends Controller
 
                 } elseif ($user->getRoles() == "ROLE_USER_COMPANY_PRINCIPAL")
                 {
-                    $compagny = new Company();
-                    $user->setCompagny($compagny);
+                    $company = new Company();
+                    $user->setCompany($company);
                 }
 
                 // 4) save the User!

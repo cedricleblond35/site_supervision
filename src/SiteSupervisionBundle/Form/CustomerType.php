@@ -86,30 +86,13 @@ class CustomerType extends AbstractType
                 return $er->createQueryBuilder('u');
                 },
                 ])
-            
-//            ->add('identifiant', null, array(
-//                'required'   => true,
-//                'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'5,20'),
-//                'label' => 'Identifiant',
-//                'mapped' => false,
-//            ))
-//            ->add('password', PasswordType::class, array(
-//                'required'   => true,
-//                'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'5,20'),
-//                'label' => 'Mot de passe',
-//                'mapped' => false,
-//            ))
-//            ->add('valide_password', PasswordType::class, array(
-//                'required'   => true,
-//                'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'5,20', 'data-validate-linked' => 'password'),
-//                'label' => 'Confirmation mot de passe',
-//                'mapped' => false,
-//            ))
             ->add('note', TextareaType::class, array(
                 'required'   => false,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12'),
                 'label' => 'Notes',
-            ));
+            ))
+        ->add('user', UserType::class, [ 'block_name' => 'customer', 'label' => false])
+        ;
     }
     
     /**

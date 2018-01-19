@@ -41,19 +41,14 @@ class User
         
     }
 
-    public function create(\SiteSupervisionBundle\Entity\User $user)
+    public function prepare(\SiteSupervisionBundle\Entity\User $user)
     {
-
-
-        //instancier un utilisateur
-        $password = "";
-
         if($user->getPassword() != "")
         {
-                $user->setPassword(
-                    $this->container->get('security.password_encoder')
-                        ->encodePassword($user, $user->getPassword())
-            );
+        $user->setPassword(
+            $this->container->get('security.password_encoder')
+                ->encodePassword($user, $user->getPassword())
+        );
         }
 
         $user->setLastConnection(new \DateTime());
@@ -61,29 +56,12 @@ class User
         $user->setToken('');
         $user->setConnectionFailure('0');
 
+        return $user;
+    }
 
-//        switch ($user->getRoles())
-//        {
-//            case "ROLE_ADMIN":
-//            case "ROLE_SUPERADMIN":
-//                $user->setCustomer(null);
-//                $user->setCompagny(null);
-//                break;
-//
-//            case "ROLE_USER_COMPANY_PRINCIPAL":
-//            case "ROLE_USER_COMPANY":
-//                $user->setCustomer(null);
-//                $user->setCompagny($compagny);
-//                break;
-//
-//            case "ROLE_CUSTOMER":
-//                $customer = new Customer();
-//                $user->setCustomer($customer);
-//                $user->setCompagny(null);
-//                break;
-//
-//        }
-
+    public function create(\SiteSupervisionBundle\Entity\User $user)
+    {
+        $user = $this->prepare($user);
 
         //persister les données
         $this->em->persist($user);

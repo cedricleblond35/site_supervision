@@ -2,21 +2,17 @@
 
 namespace SiteSupervisionBundle\Form;
 
-use SiteSupervisionBundle\Entity\Customer;
+
+use SiteSupervisionBundle\Entity\Employee;
 use SiteSupervisionBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -30,7 +26,7 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, array(
                 'required'   => true,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12'),
-                'label' => 'E-mail',
+                'label' => 'E-mail utilisateur',
                 'required'   => true,
             ))
 //            ->add('roles', ChoiceType::class, [
@@ -55,13 +51,14 @@ class UserType extends AbstractType
 
 
         //ajouter les champs nécessaire selon le type d'utilisateur créé
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
+        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) use ($options) {
             //$user = $event->getData();
             $form = $event->getForm();
-
-            if ($options['data']->getCustomer() != null) {
-                $form->add('customer', CustomerType::class);
-                $form->add('roles', HiddenType::class, array('data' => 'ROLE_CUSTOMER',));
+            if ($options['block_name'] == 'customer') {
+                $form->add('roles', HiddenType::class, array('data' => 'ROLE_CUSTOMER','label' => false));
+            }
+            if ($options['block_name'] == 'company') {
+                $form->add('roles', HiddenType::class, array('data' => 'ROLE_USER_COMPANY','label' => false));
             }
         });
     }

@@ -17,7 +17,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  *
  * @UniqueEntity("telephonePortable", message="Ce téléphone n'est pas disponible")
- * @UniqueEntity("email", message="Cet email n'est pas disponible")
  */
 class Employee
 {
@@ -55,13 +54,6 @@ class Employee
      */
     private $telephonePortable;
 
-    /**
-     * @var string
-     *
-     * @Assert\Email(message="Votre e-mail ne correspond à un email")
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
 
     //////////////////////////////////////////////
     /**
@@ -71,7 +63,21 @@ class Employee
      * @ORM\JoinColumn(nullable=false)
      *
      */
-    private $compagny;
+    private $company;
+
+    /**
+     * @var \SiteSupervisionBundle\Entity\User
+     *
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User",inversedBy="employee", cascade={"ALL"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     */
+    private $user;
+    
+    /////////////////////////////////////////////////////
+
+    public function __construct()   {   }
+
 
 
     /**
@@ -157,50 +163,50 @@ class Employee
     }
 
     /**
-     * Set email
+     * Set company
      *
-     * @param string $email
+     * @param \SiteSupervisionBundle\Entity\Company $company
      *
      * @return Employee
      */
-    public function setEmail($email)
+    public function setCompany(\SiteSupervisionBundle\Entity\Company $company)
     {
-        $this->email = $email;
+        $this->company = $company;
 
         return $this;
     }
 
     /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set compagny
-     *
-     * @param \SiteSupervisionBundle\Entity\Company $compagny
-     *
-     * @return Employee
-     */
-    public function setCompagny(\SiteSupervisionBundle\Entity\Company $compagny)
-    {
-        $this->compagny = $compagny;
-
-        return $this;
-    }
-
-    /**
-     * Get compagny
+     * Get company
      *
      * @return \SiteSupervisionBundle\Entity\Company
      */
-    public function getCompagny()
+    public function getCompany()
     {
-        return $this->compagny;
+        return $this->company;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \SiteSupervisionBundle\Entity\User $user
+     *
+     * @return Employee
+     */
+    public function setUser(\SiteSupervisionBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \SiteSupervisionBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

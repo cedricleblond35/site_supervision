@@ -92,18 +92,18 @@ class User implements UserInterface
     /**
      * @var \SiteSupervisionBundle\Entity\Customer
      *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Customer", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Customer", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customer;
 
     /**
-     * @var \SiteSupervisionBundle\Entity\Company
+     * @var \SiteSupervisionBundle\Entity\Employee
      *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Company", inversedBy="user", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="compagny_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Employee", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
-    private $compagny;
+    private $employee;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -334,28 +334,21 @@ class User implements UserInterface
     }
 
     /**
-     * Set compagny
-     *
-     * @param \SiteSupervisionBundle\Entity\Company $compagny
-     *
-     * @return User
+     * @return Company
      */
-    public function setCompagny(\SiteSupervisionBundle\Entity\Company $compagny = null)
+    public function getEmployee()
     {
-        $this->compagny = $compagny;
-
-        return $this;
+        return $this->employee;
     }
 
     /**
-     * Get compagny
-     *
-     * @return \SiteSupervisionBundle\Entity\Company
+     * @param Employee employee
      */
-    public function getCompagny()
+    public function setEmployee(\SiteSupervisionBundle\Entity\Employee $employee)
     {
-        return $this->compagny;
+        $this->employee = $employee;
     }
+
 
     /**
      * Set username

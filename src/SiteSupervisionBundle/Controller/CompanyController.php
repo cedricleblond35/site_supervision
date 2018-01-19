@@ -3,6 +3,10 @@
 namespace SiteSupervisionBundle\Controller;
 
 use SiteSupervisionBundle\Entity\Company;
+use SiteSupervisionBundle\Entity\Employee;
+use SiteSupervisionBundle\Entity\User;
+use SiteSupervisionBundle\Form\CompanyType;
+use SiteSupervisionBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -39,8 +43,48 @@ class CompanyController extends Controller
      */
     public function newAction(Request $request)
     {
+        //select the city according to the department
+        if($request->isXmlHttpRequest()){
+            $tmpVille = array();
+            $cp = $request->request->get('some_var_name');
+            if($cp)
+            {
+                $data = $this->getDoctrine()->getRepository('SiteSupervisionBundle:VillesFranceFree')->findBy(
+                    array('villeCodePostal' => $cp),
+                    array('villeNom' => 'ASC')
+                );
+
+
+                //si le retour de doctrine est un tableau (plusieurs villes)
+                if (is_array($data))
+                {
+                    foreach($data as $ville)
+                    {
+                        $tmpVille[$ville->getId()] = $ville->getVilleNomReel();
+                    }
+                }
+                else
+                {
+                    $tmpVille[$data->getId()] = $data->getVilleNomReel();
+                }
+
+                $arrData = ['output' => $tmpVille];
+                return new JsonResponse($arrData);
+            }
+        }
+        $user = new User();
         $company = new Company();
-        $form = $this->createForm('SiteSupervisionBundle\Form\CompanyType', $company);
+        $employee = new Employee();
+        
+        $user->setEmployee($employee);
+        $employee->setUser($user);
+        
+        $company->addEmployee($employee);
+        
+        $form = $this->createForm(CompanyType::class, $company, array(
+            'action' => $this->generateUrl('company_new'),
+            'method' => 'POST',
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,7 +96,8 @@ class CompanyController extends Controller
         }
 
         return $this->render('company/new.html.twig', array(
-            'company' => $company,
+            //'company' => $company,
+            //'employee' => $employee,
             'form' => $form->createView(),
         ));
     }

@@ -59,11 +59,11 @@ class Lot
     /**
      * @var \SiteSupervisionBundle\Entity\Company
      *
-     * @ORM\ManyToOne(targetEntity="\SiteSupervisionBundle\Entity\Company", inversedBy="lots")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="\SiteSupervisionBundle\Entity\Company")
+     * @ORM\JoinColumn(nullable=true)
      *
      */
-    private $compagny;
+    private $company;
     
     /**
      * Constructor
@@ -72,6 +72,7 @@ class Lot
     {
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->construction_sites = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->company = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -201,26 +202,21 @@ class Lot
     }
 
     /**
-     * Set compagny
-     *
-     * @param \SiteSupervisionBundle\Entity\Company $compagny
-     *
-     * @return Lot
+     * @return Company
      */
-    public function setCompagny(\SiteSupervisionBundle\Entity\Company $compagny)
+    public function getCompany()
     {
-        $this->compagny = $compagny;
-
-        return $this;
+        return $this->company;
     }
 
     /**
-     * Get compagny
-     *
-     * @return \SiteSupervisionBundle\Entity\Company
+     * @param Company $company
      */
-    public function getCompagny()
+    public function setCompany($company)
     {
-        return $this->compagny;
+        $this->company = $company;
     }
+
+
+
 }

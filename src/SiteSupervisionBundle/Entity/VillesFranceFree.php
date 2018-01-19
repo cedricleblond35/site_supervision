@@ -126,7 +126,7 @@ class VillesFranceFree
      *
      * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Company", mappedBy="villesFranceFree")
      */
-    private $compagnies;
+    private $companies;
     /**
      * @var \SiteSupervisionBundle\Entity\Customer
      *
@@ -146,7 +146,7 @@ class VillesFranceFree
      */
     public function __construct()
     {
-        $this->compagnies = new ArrayCollection();
+        $this->companies = new ArrayCollection();
         $this->customers = new ArrayCollection();
         $this->construction_sites = new ArrayCollection();
     }
@@ -450,27 +450,27 @@ class VillesFranceFree
     }
 
     /**
-     * Add compagny
+     * Add company
      *
      * @param \SiteSupervisionBundle\Entity\Company $compagny
      *
      * @return VillesFranceFree
      */
-    public function addCompagny(\SiteSupervisionBundle\Entity\Company $compagny)
+    public function addCompany(\SiteSupervisionBundle\Entity\Company $company)
     {
-        $this->compagnies[] = $compagny;
+        $this->companies[] = $company;
 
         return $this;
     }
 
     /**
-     * Remove compagny
+     * Remove company
      *
-     * @param \SiteSupervisionBundle\Entity\Company $compagny
+     * @param \SiteSupervisionBundle\Entity\Company $company
      */
-    public function removeCompagny(\SiteSupervisionBundle\Entity\Company $compagny)
+    public function removeCompany(\SiteSupervisionBundle\Entity\Company $company)
     {
-        $this->compagnies->removeElement($compagny);
+        $this->companies->removeElement($company);
     }
 
     /**
@@ -478,9 +478,9 @@ class VillesFranceFree
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCompagnies()
+    public function getCompanies()
     {
-        return $this->compagnies;
+        return $this->companies;
     }
 
     /**

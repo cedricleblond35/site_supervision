@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
-{% block page_title %}Créer une entreprise{% endblock page_title %}
+{% block page_title %}SOCIETE{% endblock page_title %}
 
+{% block page_content %}
 {% form_theme form 'form/fields.html.twig' %}
+
 <!-- page content -->
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Formulaire de création d'un client</h2>
+                <h2>Formulaire de création</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -29,15 +31,14 @@
                 {{ form_start(form, {'attr': {novalidate: 'novalidate', 'class': 'form-horizontal form-label-left'}}) }}
                 <span class="section">Généralité</span>
                 <div class="item form-group">{#  dump(form.villesFranceFree.vars) #}
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.company.nom.vars.id }}" >{{ form_label(form.company.nom) }} <span class="required">*</span></label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.nom.vars.id }}" >{{ form_label(form.nom) }} <span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.nom) }}
-                        {{ form_errors(form.company.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
                     </div>
                 </div>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.email.vars.id }}">{{ form_label(form.email) }} <span class="required">*</span>
-                    </label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.email.vars.id }}">{{ form_label(form.email) }}</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {{ form_widget(form.email) }}
                         {{ form_errors(form.email) }}
@@ -45,87 +46,121 @@
                 </div>
 
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.company.telephone.vars.id }}">{{ form_label(form.company.telephone) }}<span>&nbsp;</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.telephonefixe.vars.id }}">{{ form_label(form.telephonefixe) }}<span>&nbsp;</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.telephone) }}
-                        {{ form_errors(form.company.telephone) }}
+                        {{ form_widget(form.telephonefixe) }}
+                        {{ form_errors(form.telephonefixe) }}
                     </div>
                 </div>
                 <span class="section">Coordonnée</span>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.company.adresse1.vars.id }}">{{  form_label(form.company.adresse1)  }} <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.adresse1.vars.id }}">{{  form_label(form.adresse1)  }} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.adresse1) }}
-                        {{ form_errors(form.company.adresse1) }}
+                        {{ form_widget(form.adresse1) }}
+                        {{ form_errors(form.adresse1) }}
                     </div>
                 </div>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.company.adresse2.vars.id }}">{{  form_label(form.company.adresse2)  }} <span>&nbsp;</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.adresse2.vars.id }}">{{  form_label(form.adresse2)  }} <span>&nbsp;</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.adresse2) }}
-                        {{ form_errors(form.company.adresse2) }}
+                        {{ form_widget(form.adresse2) }}
+                        {{ form_errors(form.adresse2) }}
                     </div>
                 </div>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.company.villeCodePostal.vars.id }}">{{  form_label(form.company.villeCodePostal)  }} <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.villeCodePostal.vars.id }}">{{  form_label(form.villeCodePostal)  }} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.villeCodePostal) }}
-                        {{ form_errors(form.company.villeCodePostal) }}
+                        {{ form_widget(form.villeCodePostal) }}
+                        {{ form_errors(form.villeCodePostal) }}
                     </div>
                 </div>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.company.villesFranceFree.vars.id }}">{{  form_label(form.company.villesFranceFree)  }} <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.villesFranceFree.vars.id }}">{{  form_label(form.villesFranceFree)  }} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.villesFranceFree) }}
-                        {{ form_errors(form.company.villesFranceFree) }}
+                        {{ form_widget(form.villesFranceFree) }}
+                        {{ form_errors(form.villesFranceFree) }}
                     </div>
                 </div>
-                <span class="section">Connexion</span>
+                <span class="section">Contact</span>
+                {% set employee = form.employees[0] %}
                 <div class="item form-group">
-                    <label for="password" class="control-label col-md-3"  for="{{ form.password.first.vars.id }}">
-                        {{  form_label(form.password.first)  }} <span class="required">*</span></label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ employee.nom.vars.id }}">{{ form_label(employee.nom) }} <span class="required">*</span>
+                    </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.password.first) }}
-                        {{ form_errors(form.password.first) }}
+                        {{ form_widget(employee.nom) }}
+                        {{ form_errors(employee.nom) }}
                     </div>
                 </div>
                 <div class="item form-group">
-                    <label for="password" class="control-label col-md-3"  for="{{ form.password.second.vars.id }}">
-                        {{  form_label(form.password.second)  }} <span class="required">*</span></label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ employee.prenom.vars.id }}">{{ form_label(employee.prenom) }} <span class="required">*</span>
+                    </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.password.second) }}
-                        {{ form_errors(form.password.second) }}
+                        {{ form_widget(employee.prenom) }}
+                        {{ form_errors(employee.prenom) }}
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ employee.telephonePortable.vars.id }}">{{ form_label(employee.telephonePortable) }} <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        {{ form_widget(employee.telephonePortable) }}
+                        {{ form_errors(employee.telephonePortable) }}
+                    </div>
+                </div>
+                {% set user = form.employees[0].user %}
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ user.email.vars.id }}">{{ form_label(user.email) }} <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        {{ form_widget(user.email) }}
+                        {{ form_errors(user.email) }}
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <label for="password" class="control-label col-md-3"  for="{{ user.password.first.vars.id }}">
+                        {{  form_label(user.password.first)  }} <span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        {{ form_widget(user.password.first) }}
+                        {{ form_errors(user.password.first) }}
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <label for="password" class="control-label col-md-3"  for="{{ user.password.second.vars.id }}">
+                        {{  form_label(user.password.second)  }} <span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        {{ form_widget(user.password.second) }}
+                        {{ form_errors(user.password.second) }}
                     </div>
                 </div>
 
                 <span class="section">Divers</span>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.company.siret.vars.id }}">{{  form_label(form.company.siret)  }}
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.siret.vars.id }}">{{  form_label(form.siret)  }}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.siret) }}
-                        {{ form_errors(form.company.siret) }}
+                        {{ form_widget(form.siret) }}
+                        {{ form_errors(form.siret) }}
                     </div>
                 </div>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.company.ape.vars.id }}">{{  form_label(form.company.ape)  }}
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.ape.vars.id }}">{{  form_label(form.ape)  }}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.ape) }}
-                        {{ form_errors(form.company.ape) }}
+                        {{ form_widget(form.ape) }}
+                        {{ form_errors(form.ape) }}
                     </div>
                 </div>
                 <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.company.commentaire.vars.id }}">{{  form_label(form.company.commentaire)  }}
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.commentaire.vars.id }}">{{  form_label(form.commentaire)  }}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ form_widget(form.company.commentaire) }}
-                        {{ form_errors(form.company.commentaire) }}
+                        {{ form_widget(form.commentaire) }}
+                        {{ form_errors(form.commentaire) }}
                     </div>
                 </div>
                 <div class="ln_solid"></div>
@@ -135,10 +170,8 @@
                         <button id="send" type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </div>
-                {{  form_label(form.username)  }}
+                {{  form_label(user.username)  }}
                 {{ form_end(form) }}
-
-
             </div>
         </div>
     </div>
@@ -168,7 +201,7 @@
 
     <script>
         $(document).ready(function(){
-            $('#{{ form.company.villeCodePostal.vars.id }}').change(function(){
+            $('#{{ form.villeCodePostal.vars.id }}').change(function(){
                         $.ajax({
                             url:'{{ path('company_new') }}',
                             type: "POST",
@@ -187,9 +220,9 @@
                                 });
 
 
-                                $('#{{ form.company.villesFranceFree.vars.id }}').empty();
+                                $('#{{ form.villesFranceFree.vars.id }}').empty();
 
-                                $('#{{ form.company.villesFranceFree.vars.id }}').append(addhtml);;
+                                $('#{{ form.villesFranceFree.vars.id }}').append(addhtml);;
 
 
                             }
