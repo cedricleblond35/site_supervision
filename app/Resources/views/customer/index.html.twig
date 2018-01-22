@@ -29,23 +29,22 @@
                             <th class="columns-title" style="display: table-cell">Telephone portable</th>
                             <th class="columns-title" style="display: table-cell">Telephone fixe</th>
                             <th class="columns-title" style="display: table-cell">Email</th>
-                            <th class="columns-title" style="display: table-cell">Datenaissance</th>
-                            <th class="columns-title" style="display: table-cell">Adresse</th>
+                            <th class="columns-title" style="display: table-cell">Date de naissance</th>
+                            <th class="columns-title" style="display: table-cell">Ville</th>
                             <th class="column-title no-link last" style="display: table-cell">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {{ dump(customers) }}
-
+                        {{ dump() }}
                         {% for customer in customers %}
                             <tr >
                                 <td>{{ customer.civilite }} {{ customer.nom }}</td>
                                 <td>{{ customer.prenom }}</td>
                                 <td>{{ customer.telephonePortable }}</td>
                                 <td>{{ customer.telephoneFixe }}</td>
-                                <td>{{ customer.user.email }}</td>
+                                <td>{{ customer.email }}</td>
                                 <td>{% if customer.dateNaissance %}{{ customer.dateNaissance|date('Y-m-d') }}{% endif %}</td>
-                                <td>{{ customer.adresse1 }}{{ customer.adresse2 }}</td>
+                                <td>{{ customer.villeNom }}</td>
                                 <td>
                                     <a href="{{ path('customer_show', { 'id': customer.id }) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Détail</a>
                                     <a href="{{ path('customer_edit', { 'id': customer.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier</a>

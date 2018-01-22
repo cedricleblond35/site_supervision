@@ -116,7 +116,7 @@ class Customer
     /**
      * @var \SiteSupervisionBundle\Entity\User
      *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User",inversedBy="customer", cascade={"ALL"})
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User",inversedBy="customer", cascade={"ALL"}, cascade={"all"}, fetch="EAGER")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * 
      */
@@ -125,7 +125,7 @@ class Customer
     /**
      * @var \SiteSupervisionBundle\Entity\Construction_site
      *
-     * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Construction_site", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Construction_site", mappedBy="customer", cascade={"ALL"})
      *
      */
     private $customers_of_contruction_site;
@@ -135,7 +135,7 @@ class Customer
      *
      * @ORM\ManyToOne(
      *     targetEntity="\SiteSupervisionBundle\Entity\VillesFranceFree",
-     *     inversedBy="customers")
+     *     inversedBy="customers", cascade={"all"}, fetch="EAGER")
      * @ORM\JoinColumn(name="villes_france_free_id", referencedColumnName="id")
      *
      */
@@ -149,6 +149,7 @@ class Customer
     public function __construct()
     {
         $this->customers_of_contruction_site = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**
@@ -483,12 +484,5 @@ class Customer
     {
         return $this->villesFranceFree;
     }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getNom();
-    }
+    
 }

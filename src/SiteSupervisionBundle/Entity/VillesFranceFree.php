@@ -130,7 +130,7 @@ class VillesFranceFree
     /**
      * @var \SiteSupervisionBundle\Entity\Customer
      *
-     * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Customer", mappedBy="villesFranceFree")
+     * @ORM\OneToMany(targetEntity="\SiteSupervisionBundle\Entity\Customer", mappedBy="villesFranceFree", cascade={"persist", "remove"})
      */
     private $customers;
     /**
