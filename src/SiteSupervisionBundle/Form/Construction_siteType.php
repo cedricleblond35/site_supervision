@@ -13,7 +13,22 @@ class Construction_siteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('adresse1')->add('adresse2')->add('nbrePieces')->add('surfaceSol')->add('surfaceHabitable')->add('dateDebut')->add('dateFin')->add('dateDebutPrevi')->add('dateFinPrevi')->add('lien_cctp')->add('lien_plans')->add('lien_devis')->add('lots')->add('city')->add('customer');
+        $builder
+            ->add('adresse1')
+            ->add('adresse2')
+            ->add('nbrePieces')
+            ->add('surfaceSol')
+            ->add('surfaceHabitable')
+            ->add('dateDebut')
+            ->add('dateFin')
+            ->add('dateDebutPrevi')
+            ->add('dateFinPrevi')
+            ->add('lien_cctp')
+            ->add('lien_plans')
+            ->add('lien_devis')
+            ->add('lots')
+            ->add('city')
+            ->add('customer');
     }
     
     /**

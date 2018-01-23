@@ -16,10 +16,29 @@ class CustomerRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $em->createQuery(
             "
-            SELECT c.id, c.civilite,c.nom, c.prenom, c.telephonePortable, c.telephoneFixe, c.dateNaissance, u.email, v.villeNom
-            FROM 'SiteSupervisionBundle:Customer' AS c 
-            LEFT JOIN 'SiteSupervisionBundle:User' AS u WITH c.id = u.id 
-            LEFT JOIN 'SiteSupervisionBundle:VillesFranceFree' AS v WITH c.id = v.id ");
+            SELECT cp.id, cp.civilite,cp.nom, cp.prenom, cp.telephonePortable, cp.telephoneFixe, cp.dateNaissance, u.email, v.villeNom
+            FROM 'SiteSupervisionBundle:Customer' AS cp 
+            LEFT JOIN 'SiteSupervisionBundle:User' AS u WITH cp.id = u.id 
+            LEFT JOIN 'SiteSupervisionBundle:VillesFranceFree' AS v WITH cp.id = v.id ");
+        $query->setFirstResult(0);
+        $query->setMaxResults(10);
+
+        return $query->getResult();
+
+    }
+
+    public function findSummaryBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery(
+            "
+            SELECT cp.*, u.email, v.villeNom, 
+            FROM 'SiteSupervisionBundle:Customer' AS cp 
+            LEFT JOIN 'SiteSupervisionBundle:User' AS u WITH cp.id = u.id 
+            LEFT JOIN 'SiteSupervisionBundle:VillesFranceFree' AS v WITH cp.id = v.id
+            LEFT JOIN 'SiteSupervisionBundle:Construction_site' AS cs WITH cp.id = cs.id 
+            ");
         $query->setFirstResult(0);
         $query->setMaxResults(10);
 

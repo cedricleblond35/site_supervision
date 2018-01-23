@@ -3,6 +3,8 @@
 namespace SiteSupervisionBundle\Controller;
 
 use SiteSupervisionBundle\Entity\Construction_site;
+use SiteSupervisionBundle\Entity\Customer;
+use SiteSupervisionBundle\SiteSupervisionBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -10,14 +12,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Construction_site controller.
  *
- * @Route("construction_site")
  */
 class Construction_siteController extends Controller
 {
     /**
      * Lists all construction_site entities.
      *
-     * @Route("/", name="construction_site_index")
+     * @Route("construction_site/", name="construction_site_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,12 +35,15 @@ class Construction_siteController extends Controller
     /**
      * Creates a new construction_site entity.
      *
-     * @Route("/new", name="construction_site_new")
+     * @Route("construction_site/new/{id}/customer", requirements={"id" = "\d+"}, name="construction_site_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
         $construction_site = new Construction_site();
+
+        $customer = $this->getDoctrine()->getManager('SiteSupervisionBundle:Customer')->findById($id);
+
         $form = $this->createForm('SiteSupervisionBundle\Form\Construction_siteType', $construction_site);
         $form->handleRequest($request);
 
@@ -53,6 +57,7 @@ class Construction_siteController extends Controller
 
         return $this->render('construction_site/new.html.twig', array(
             'construction_site' => $construction_site,
+            'customer' => $customer,
             'form' => $form->createView(),
         ));
     }
@@ -60,7 +65,7 @@ class Construction_siteController extends Controller
     /**
      * Finds and displays a construction_site entity.
      *
-     * @Route("/{id}", name="construction_site_show")
+     * @Route("construction_site/{id}", name="construction_site_show")
      * @Method("GET")
      */
     public function showAction(Construction_site $construction_site)
@@ -76,7 +81,7 @@ class Construction_siteController extends Controller
     /**
      * Displays a form to edit an existing construction_site entity.
      *
-     * @Route("/{id}/edit", name="construction_site_edit")
+     * @Route("construction_site/{id}/edit", name="construction_site_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Construction_site $construction_site)
@@ -101,7 +106,7 @@ class Construction_siteController extends Controller
     /**
      * Deletes a construction_site entity.
      *
-     * @Route("/{id}", name="construction_site_delete")
+     * @Route("construction_site/{id}", name="construction_site_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Construction_site $construction_site)

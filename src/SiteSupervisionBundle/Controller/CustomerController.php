@@ -4,7 +4,6 @@ namespace SiteSupervisionBundle\Controller;
 
 use SiteSupervisionBundle\Entity\Customer;
 use SiteSupervisionBundle\Entity\User;
-use SiteSupervisionBundle\Entity\VillesFranceFree;
 use SiteSupervisionBundle\Form\CustomerType;
 use SiteSupervisionBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -240,8 +239,7 @@ class CustomerController extends Controller
         return $this->redirectToRoute('customer_index');
 
     }
-    
-    
+
    
     /**
      * Deletes a customer entity.
