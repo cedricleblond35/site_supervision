@@ -59,7 +59,7 @@ class Employee
     /**
      * @var \SiteSupervisionBundle\Entity\Company
      *
-     * @ORM\ManyToOne(targetEntity="\SiteSupervisionBundle\Entity\Company", inversedBy="employees", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="\SiteSupervisionBundle\Entity\Company", inversedBy="employees")
      * @ORM\JoinColumn(nullable=false)
      *
      */

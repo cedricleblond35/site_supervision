@@ -80,6 +80,7 @@ class CompanyController extends Controller
         $employee->setUser($user);
         
         $company->addEmployee($employee);
+        $employee[0]->setCompany($company);
         
         $form = $this->createForm(CompanyType::class, $company, array(
             'action' => $this->generateUrl('company_new'),
@@ -88,8 +89,24 @@ class CompanyController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //$companyService = $this->container->get('Capvisu.ManagerCompany');
+            //$companyService->create($company);
+
+            $employee = $company->getEmployees();
+
+            //prepare of user
+            $userService = $this->container->get('Capvisu.ManagerUser');
+            $user = $userService->prepare($employee[0]->getUser());
+
+            $company->getEmployees()[0]->setUser($user);
+
             $em = $this->getDoctrine()->getManager();
+
+            //$em->persist($user);
+            //dump($user);
+            //$em->persist($employee);
             $em->persist($company);
+            dump($company);
             $em->flush();
 
             return $this->redirectToRoute('company_show', array('id' => $company->getId()));

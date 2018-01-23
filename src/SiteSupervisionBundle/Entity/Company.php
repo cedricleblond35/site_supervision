@@ -32,21 +32,21 @@ class Company
      * @var string
      *
      * @Assert\NotBlank(message="Veuillez donner le nom de l'entreprise")
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse1", type="string", length=255)
+     * @ORM\Column(name="adresse1", type="string", length=255, nullable=true)
      */
     private $adresse1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse2", type="string", length=255)
+     * @ORM\Column(name="adresse2", type="string", length=255, nullable=true)
      */
     private $adresse2;
 
@@ -57,7 +57,7 @@ class Company
      *     match=false,
      *     message="Le numero de téléphone n'est pas valide"
      * )
-     * @ORM\Column(name="telephone", type="string", length=10)
+     * @ORM\Column(name="telephonefixe", type="string", length=14, nullable=true)
 
      */
     private $telephonefixe;
@@ -68,7 +68,7 @@ class Company
      *     message = "Cel mail '{{ value }}' n'est pas valide.",
      *     checkMX = true
      * )
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=false)
      */
     private $email;
 
@@ -79,7 +79,7 @@ class Company
      *     match=false,
      *     message="Ceci n'est pas un numero de siret valide"
      * )
-     * @ORM\Column(name="siret", type="string", length=14, unique=true)
+     * @ORM\Column(name="siret", type="string", length=14, unique=true, nullable=true)
      */
     private $siret;
 
@@ -90,14 +90,14 @@ class Company
      *     match=false,
      *     message="Ceci n'est pas un numero de siret valide"
      * )
-     * @ORM\Column(name="ape", type="string", length=9)
+     * @ORM\Column(name="ape", type="string", length=9, nullable=true)
      */
     private $ape;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="text")
+     * @ORM\Column(name="commentaire", type="text", nullable=true)
      */
     private $commentaire;
 

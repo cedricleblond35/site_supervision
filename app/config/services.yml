@@ -39,6 +39,12 @@ services:
             arguments: ['@doctrine.orm.entity_manager', '@service_container']
             public: true
 
+    Capvisu.ManagerCompany:
+                class: SiteSupervisionBundle\Service\Company
+                arguments: ['@doctrine.orm.entity_manager', '@service_container']
+                public: true
+
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

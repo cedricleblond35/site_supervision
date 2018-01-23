@@ -10,4 +10,18 @@ namespace SiteSupervisionBundle\Repository;
  */
 class CompanyRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery(
+            "
+            SELECT cp.id, cp.nom, cp.telephonefixe, cp.email, v.villeNom
+            FROM 'SiteSupervisionBundle:Company' AS cp 
+            LEFT JOIN 'SiteSupervisionBundle:VillesFranceFree' AS v WITH cp.id = v.id ");
+        $query->setFirstResult(0);
+        $query->setMaxResults(10);
+
+        return $query->getResult();
+    }
 }

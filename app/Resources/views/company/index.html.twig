@@ -27,9 +27,7 @@
                             <th class="columns-title" style="display: table-cell">Activité</th>
                             <th class="columns-title" style="display: table-cell">Téléphone</th>
                             <th class="columns-title" style="display: table-cell">Email</th>
-                            <th class="columns-title" style="display: table-cell">Contact</th>
-                            <th class="columns-title" style="display: table-cell">Téléphone portable</th>
-                            <th class="columns-title" style="display: table-cell">Email</th>
+                            <th class="columns-title" style="display: table-cell">Ville</th>
                             <th class="column-title no-link last" style="display: table-cell">Actions</th>
                         </tr>
                         </thead>
@@ -37,17 +35,15 @@
 
                         {% for company in companies %}
                             <tr >
-                                <td>{{ companies.nomSociete }}</td>
+                                <td>{{ company.nom}}</td>
                                 <td></td>
-                                <td>{{ companies.telephonefixe }}</td>
-                                <td>{{ companies.email }}</td>
-                                <td>{{ companies.employee.nom }} {{ companies.employee.prenom }}</td>
-                                <td>{{ companies.employee.telephone_portable }}</td>
-                                <td>{{ companies.employee.email }}</td>
+                                <td>{{ company.telephonefixe }}</td>
+                                <td>{{ company.email }}</td>
+                                <td>{{ company.villeNom }}</td>
                                 <td>
-                                    <a href="{{ path('company_show', { 'id': companies.id }) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Détail</a>
-                                    <a href="{{ path('company_edit', { 'id': companies.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier</a>
-                                    <a href="{{ path('company_delete', { 'id': companies.id }) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Supprimer</a>
+                                    <a href="{{ path('company_show', { 'id': company.id }) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Détail</a>
+                                    <a href="{{ path('company_edit', { 'id': company.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier</a>
+                                    <a href="{{ path('company_delete', { 'id': company.id }) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Supprimer</a>
                                 </td>
                             </tr>
                         {% endfor %}

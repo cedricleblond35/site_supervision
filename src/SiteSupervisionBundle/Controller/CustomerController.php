@@ -121,8 +121,6 @@ class CustomerController extends Controller
      */
     public function showAction(Customer $customer)
     {
-        dump($customer);
-        die();
         $deleteForm = $this->createDeleteForm($customer);
 
         return $this->render('customer/show.html.twig', array(

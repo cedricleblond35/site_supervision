@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block page_title %}Client{% endblock page_title %}
 {% block page_content %}
-    {{ dump(customer) }}
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
@@ -35,7 +34,7 @@
 
                                 <ul class="list-unstyled user_data">
                                     <li>
-                                        {#<i class="fa fa-map-marker user-profile-icon"></i> {{ customer.villesFranceFree.villeDepartement }}, {{ customer.villesFranceFree.villeNomReel }}#}
+                                        <i class="fa fa-map-marker user-profile-icon"></i> {{ customer.villesFranceFree.villeDepartement }}, {{ customer.villesFranceFree.villeNomReel }}
                                     </li>
                                     <li>
                                         <i class="fa fa-phone user-profile-icon"></i> {{ customer.telephonePortable }} / {{ customer.telephoneFixe }}
