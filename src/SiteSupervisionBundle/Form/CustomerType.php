@@ -82,8 +82,8 @@ class CustomerType extends AbstractType
                 "class" => "SiteSupervisionBundle:VillesFranceFree",
                 // use the User.username property as the visible option string
                 "choice_label" => "villeNom",
-                'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('u');
+                'query_builder' => function (EntityRepository $repo) {
+                return $repo->createQueryBuilder('u');
                 },
                 ])
             ->add('note', TextareaType::class, array(

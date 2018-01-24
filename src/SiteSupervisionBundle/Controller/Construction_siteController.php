@@ -4,7 +4,6 @@ namespace SiteSupervisionBundle\Controller;
 
 use SiteSupervisionBundle\Entity\Construction_site;
 use SiteSupervisionBundle\Entity\Customer;
-use SiteSupervisionBundle\SiteSupervisionBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -40,9 +39,41 @@ class Construction_siteController extends Controller
      */
     public function newAction(Request $request, $id)
     {
+        //select the city according to the department
+        if($request->isXmlHttpRequest()){
+            $tmpVille = array();
+            $cp = $request->request->get('some_var_name');
+            if($cp)
+            {
+                $data = $this->getDoctrine()->getRepository('SiteSupervisionBundle:VillesFranceFree')->findBy(
+                    array('villeCodePostal' => $cp),
+                    array('villeNom' => 'ASC')
+                );
+
+
+                //si le retour de doctrine est un tableau (plusieurs villes)
+                if (is_array($data))
+                {
+                    foreach($data as $ville)
+                    {
+                        $tmpVille[$ville->getId()] = $ville->getVilleNomReel();
+                    }
+                }
+                else
+                {
+                    $tmpVille[$data->getId()] = $data->getVilleNomReel();
+                }
+
+                $arrData = ['output' => $tmpVille];
+                return new JsonResponse($arrData);
+            }
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
         $construction_site = new Construction_site();
 
-        $customer = $this->getDoctrine()->getManager('SiteSupervisionBundle:Customer')->findById($id);
+        $customer = $em->getRepository('SiteSupervisionBundle:Customer')->findById($id);
 
         $form = $this->createForm('SiteSupervisionBundle\Form\Construction_siteType', $construction_site);
         $form->handleRequest($request);

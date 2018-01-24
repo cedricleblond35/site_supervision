@@ -6,7 +6,6 @@ use SiteSupervisionBundle\Entity\Company;
 use SiteSupervisionBundle\Entity\Employee;
 use SiteSupervisionBundle\Entity\User;
 use SiteSupervisionBundle\Form\CompanyType;
-use SiteSupervisionBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;

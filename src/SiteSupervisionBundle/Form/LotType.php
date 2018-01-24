@@ -13,7 +13,9 @@ class LotType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numero')->add('libelle');
+        $builder
+            ->add('numero')
+            ->add('libelle');
             //->add('construction_sites')->add('company');
     }
     

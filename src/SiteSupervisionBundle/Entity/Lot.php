@@ -24,7 +24,7 @@ class Lot
     /**
      * @var int : position de l'article
      *
-     * @ORM\Column(name="numero", type="integer")
+     * @ORM\Column(name="numero", type="integer", unique=true)
      *
      */
     private $numero;
@@ -221,6 +221,10 @@ class Lot
         $this->company = $company;
     }
 
+    public function __toString()
+    {
+        return $this->getLibelle();
+    }
 
 
 }

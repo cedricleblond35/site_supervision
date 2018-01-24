@@ -1,16 +1,214 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}Suivi de chantier{% endblock page_title %}
 {% block page_content %}
-    <h1>Construction_site creation</h1>
+    {% form_theme form 'form/fields.html.twig' %}
+    <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Formulaire de création</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            {{ form_start(form, {'attr': {novalidate: 'novalidate', 'class': 'form-horizontal form-label-left'}}) }}
+                            <span class="section">Localisation</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.adresse1.vars.id }}" >{{ form_label(form.adresse1) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.adresse1) }}
+                                    {{ form_errors(form.adresse1) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.adresse2.vars.id }}" >{{ form_label(form.adresse2) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.adresse2) }}
+                                    {{ form_errors(form.adresse2) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.villesFranceFree.villeCodePostal.vars.id }}" >{{ form_label(form.villesFranceFree.villeCodePostal) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.villesFranceFree.villeCodePostal) }}
+                                    {{ form_errors(form.villesFranceFree.villeCodePostal) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.villesFranceFree.villeNom.vars.id }}" >{{ form_label(form.villesFranceFree.villeNom) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.villesFranceFree.villeNom) }}
+                                    {{ form_errors(form.villesFranceFree.villeNom) }}
+                                </div>
+                            </div>
+                            <span class="section">Généralité</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.nbrePieces.vars.id }}" >{{ form_label(form.nbrePieces) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.nbrePieces) }}
+                                    {{ form_errors(form.nbrePieces) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.surfaceSol.vars.id }}" >{{ form_label(form.surfaceSol) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.surfaceSol) }}
+                                    {{ form_errors(form.surfaceSol) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.surfaceHabitable.vars.id }}" >{{ form_label(form.surfaceHabitable) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.surfaceHabitable) }}
+                                    {{ form_errors(form.surfaceHabitable) }}
+                                </div>
+                            </div>
+                            <span class="section">Durée</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.dateDebut.vars.id }}" >{{ form_label(form.dateDebut) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.dateDebut) }}
+                                    {{ form_errors(form.dateDebut) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.dateFin.vars.id }}" >{{ form_label(form.dateFin) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.dateFin) }}
+                                    {{ form_errors(form.dateFin) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.dateDebutPrevi.vars.id }}" >{{ form_label(form.dateDebutPrevi) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.dateDebutPrevi) }}
+                                    {{ form_errors(form.dateDebutPrevi) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.dateFinPrevi.vars.id }}" >{{ form_label(form.dateFinPrevi) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.dateFinPrevi) }}
+                                    {{ form_errors(form.dateFinPrevi) }}
+                                </div>
+                            </div>
+                            <span class="section">Documents</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.lien_cctp.vars.id }}" >{{ form_label(form.lien_cctp) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.lien_cctp) }}
+                                    {{ form_errors(form.lien_cctp) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.lien_plans.vars.id }}" >{{ form_label(form.lien_plans) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.lien_plans) }}
+                                    {{ form_errors(form.lien_plans) }}
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.lien_devis.vars.id }}" >{{ form_label(form.lien_devis) }} <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    {{ form_widget(form.lien_devis) }}
+                                    {{ form_errors(form.lien_devis) }}
+                                </div>
+                            </div>
+                            <span class="section">Tâches</span>
+                            <div class="item form-group">
+                                <div class="checkbox">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.lots.vars.id }}" >{{ form_label(form.lots) }}</label>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                                    {{ form_widget(form.lots, { 'attr': {'class': 'icheckbox_flat-green'} }) }}
+                                    {{ form_errors(form.lots) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('construction_site_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                </div>
+
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('assets/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset('assets/vendors/nprogress/nprogress.js') }}"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+    <!-- jquery.inputmask -->
+    <script src="{{ asset('assets/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js') }}"></script>
+
+
+    <script>
+    $(document).ready(function(){
+        $('#{{ form.villesFranceFree.villeCodePostal.vars.id }}').change(function(){
+                    $.ajax({
+                        url:'{{ path('customer_new') }}',
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "some_var_name": this.value
+                        },
+                        async: true,
+                        success: function (data)
+                        {
+                            console.log("value : " +data.output);
+                            console.dir(data.output);
+                            var addhtml = '<option value=""></option>';
+                            $.each(data.output, function(id, ville) {
+                                addhtml += '<option value="' + id +'">' + ville + '</option>' ;
+                            });
+
+
+                            $('#{{ form.villesFranceFree.vars.id }}').empty();
+
+                            $('#{{ form.villesFranceFree.vars.id }}').append(addhtml);;
+
+
+                        }
+                    });
+                    return false;
+                }
+        )
+    });
+</script>
 {% endblock %}
