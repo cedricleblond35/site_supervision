@@ -24,6 +24,7 @@ class CityType extends AbstractType
             ))
             ->add('villeNom', TextType::class, array(
                 'required'   => true,
+                'label' => 'Ville',
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12')))
             ;
     }

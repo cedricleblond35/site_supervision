@@ -3,6 +3,7 @@
 namespace SiteSupervisionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Construction_site
@@ -23,6 +24,7 @@ class Construction_site
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="adresse1", type="string", length=255)
      */
@@ -53,6 +55,7 @@ class Construction_site
      * @var int
      *
      * @ORM\Column(name="surface_habitable", type="decimal", precision=6, scale=2)
+     *
      */
     private $surfaceHabitable;
 
@@ -135,11 +138,13 @@ class Construction_site
      */
     private $type_constructions;
 
-
     /**
      * @var \SiteSupervisionBundle\Entity\VillesFranceFree
      *
-     * @ORM\ManyToOne(targetEntity="\SiteSupervisionBundle\Entity\VillesFranceFree", inversedBy="construction_sites")
+     * @ORM\ManyToOne(
+     *     targetEntity="\SiteSupervisionBundle\Entity\VillesFranceFree",
+     *     inversedBy="construction_sites", cascade={"all"}, fetch="EAGER")
+     * @ORM\JoinColumn(name="villes_france_free_id", referencedColumnName="id")
      *
      */
     private $villesFranceFree;

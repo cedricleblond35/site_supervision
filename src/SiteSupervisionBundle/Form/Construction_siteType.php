@@ -3,6 +3,7 @@
 namespace SiteSupervisionBundle\Form;
 
 
+use Doctrine\ORM\EntityManager;
 use SiteSupervisionBundle\Entity\Lot;
 use SiteSupervisionBundle\Repository\LotRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -17,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Construction_siteType extends AbstractType
 {
+
     /**
      * {@inheritdoc}
      */
@@ -32,7 +34,7 @@ class Construction_siteType extends AbstractType
             )
             ->add('adresse2', TextType::class, 
                 array(
-                    'required'   => true,
+                    'required'   => false,
                     'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
                     'label' => 'Adresse 2'
                 )
@@ -47,7 +49,7 @@ class Construction_siteType extends AbstractType
             )
             ->add('surfaceSol', NumberType::class, 
                 array(
-                    'required'   => true,
+                    'required'   => false,
                     'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
                     'label' => 'Surface au sol',
                     'scale' => 2,
@@ -55,7 +57,7 @@ class Construction_siteType extends AbstractType
             )
             ->add('surfaceHabitable', NumberType::class,
                 array(
-                    'required'   => true,
+                    'required'   => false,
                     'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
                     'label' => 'Surface habitable',
                     'scale' => 2,
@@ -63,29 +65,37 @@ class Construction_siteType extends AbstractType
             )
             ->add('dateDebut', BirthdayType::class, 
                 array(
-                    'required'   => true,
-                    'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
+                    'required'   => false,
+                    'format' => 'dd-MM-yyyy',
+                    'attr' => array(),
+                    'years' => range(date('Y') - 10, date('Y') +1),
                     'label' => 'Début réel'
                 )
             )
             ->add('dateFin', BirthdayType::class, 
                 array(
-                    'required'   => true,
-                    'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
+                    'required'   => false,
+                    'format' => 'dd-MM-yyyy',
+                    'attr' => array(),
+                    'years' => range(date('Y') - 10, date('Y') + 10),
                     'label' => 'Fin réel'
                 )
             )
             ->add('dateDebutPrevi', BirthdayType::class, 
                 array(
-                    'required'   => true,
-                    'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
+                    'required'   => false,
+                    'format' => 'dd-MM-yyyy',
+                    'attr' => array(),
+                    'years' => range(date('Y') - 10, date('Y') +1),
                     'label' => 'Début prévisionnel'
                 )
             )
             ->add('dateFinPrevi', BirthdayType::class, 
                 array(
-                    'required'   => true,
-                    'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
+                    'required'   => false,
+                    'format' => 'dd-MM-yyyy',
+                    'attr' => array(),
+                    'years' => range(date('Y') - 10, date('Y') + 10),
                     'label' => 'Fin prévisionnel'
                 )
             )
@@ -99,7 +109,7 @@ class Construction_siteType extends AbstractType
             ->add('lien_plans', null, 
                 array(
                     'required'   => true,
-                    'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
+                    'attr' => array('class' => 'form-control col-md-7 col-xs-12 dropzone dz-clickable', 'data-validate-length-range' =>'3,20'),
                     'label' => 'Plans'
                 )
             )
@@ -112,7 +122,7 @@ class Construction_siteType extends AbstractType
             )
             ->add('lots', EntityType::class,
                 array(
-                    "label" => "Lots",
+                    "label" => false,
                     'attr' => array('class' => 'col-md-7 col-xs-12'),
                     "class" => Lot::class,
                     'multiple' => true,
@@ -123,13 +133,27 @@ class Construction_siteType extends AbstractType
                     },
                 )
             )
+            ->add('villeCodePostal', NumberType::class, array(
+                'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'5', 'pattern' => 'numeric'),
+                'label' => 'Code postal',
+                'mapped' => false,
+            ))
+            ->add('villesFranceFree',  EntityType::class, [
+                "label" => "Ville",
+                'mapped' => true,
+                'attr' => array('class' => 'form-control col-md-7 col-xs-12'),
+                // query choices from this entity
+                "class" => "SiteSupervisionBundle:VillesFranceFree",
+                // use the User.username property as the visible option string
+                "choice_label" => "villeNom",
+                'query_builder' => function (EntityRepository $repo) {
+                    return $repo->createQueryBuilder('u');
+                },
+            ])
 
-            ->add('villesFranceFree', CityType::class,
-                [ 'block_name' => 'customer', 'label' => false]
-            )
             ;
     }
-    
+
     /**
      * {@inheritdoc}
      */

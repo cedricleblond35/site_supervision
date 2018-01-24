@@ -97,6 +97,7 @@ class CustomerController extends Controller
         {
             $customerService = $this->container->get('Capvisu.ManagerCustomer');
             $customerService->create($customer);
+            
 
 
             //créer le message de succes

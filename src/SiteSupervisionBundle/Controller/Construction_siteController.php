@@ -79,6 +79,9 @@ class Construction_siteController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($customer);
+            dump($form);
+            die();
             $em = $this->getDoctrine()->getManager();
             $em->persist($construction_site);
             $em->flush();

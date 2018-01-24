@@ -15,7 +15,9 @@ class LotType extends AbstractType
     {
         $builder
             ->add('numero')
-            ->add('libelle');
+            ->add('libelle', null, [
+                'attr' => [ 'class' => 'icheckbox_flat-green']
+            ]);
             //->add('construction_sites')->add('company');
     }
     
