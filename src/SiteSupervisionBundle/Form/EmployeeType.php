@@ -31,8 +31,6 @@ class EmployeeType extends AbstractType
             ))
 
             ->add('user', UserType::class, [ 'block_name' => 'company', 'label' => false]);
-
-        
     }
     
     /**

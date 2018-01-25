@@ -137,7 +137,7 @@ class CustomerController extends Controller
      */
     public function editAction($id, Request $request, Customer $customer)
     {
-  
+
         if(is_numeric($id))
         {
 
@@ -150,9 +150,14 @@ class CustomerController extends Controller
             try {
                 //récuperer le client
                 $deleteForm = $this->createDeleteForm($customer);
-                $editForm = $this->createForm(UserType::class, $customer->getUser(), array(
-                    'action' => $this->generateUrl('customer_edit', array('id'    => $customer->getId())),
-                    'method' => 'POST'));
+
+
+                //******************************* PROBLEME DE LOGIQUE *************************************
+                $editForm = $this->createForm(UserType::class, $customer->getUser(),
+                    array(
+                        'action' => $this->generateUrl('customer_edit', array('id' => $customer->getId())),
+                        'method' => 'POST')
+                );
                 $editForm->handleRequest($request);
             }
             catch (Exception $ex)
@@ -193,7 +198,6 @@ class CustomerController extends Controller
             }
 
             return $this->render('customer/edit.html.twig', array(
-                'customer' => $customer,
                 'form' => $editForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             ));

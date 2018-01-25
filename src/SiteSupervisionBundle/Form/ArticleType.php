@@ -13,7 +13,8 @@ class ArticleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numero')->add('libelle')->add('description')->add('localisation')->add('lot')->add('article');
+        $builder->add('numero')->add('libelle')->add('description')->add('localisation')->add('lot');
+            //->add('article');
         /*$builder
             ->add('numero', IntegerType::class, [
                 "label" => "Numéro"

@@ -79,7 +79,7 @@ class CompanyController extends Controller
         $employee->setUser($user);
         
         $company->addEmployee($employee);
-        $employee[0]->setCompany($company);
+        $employee->setCompany($company);
         
         $form = $this->createForm(CompanyType::class, $company, array(
             'action' => $this->generateUrl('company_new'),
