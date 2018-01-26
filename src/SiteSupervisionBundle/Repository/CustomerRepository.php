@@ -12,18 +12,15 @@ class CustomerRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findAll()
     {
-        $em = $this->getEntityManager();
+        $sql = "SELECT cp.id, cp.civilite,cp.nom, cp.prenom, cp.telephone_portable, cp.telephone_fixe, cp.date_naissance, u.email, v.ville_nom  
+            FROM customer AS cp 
+            LEFT JOIN user AS u ON cp.id = u.customer_id 
+            LEFT JOIN villes_france_free AS v ON cp.villes_france_free_id = v.id";
 
-        $query = $em->createQuery(
-            "
-            SELECT cp.id, cp.civilite,cp.nom, cp.prenom, cp.telephonePortable, cp.telephoneFixe, cp.dateNaissance, u.email, v.villeNom
-            FROM 'SiteSupervisionBundle:Customer' AS cp 
-            LEFT JOIN 'SiteSupervisionBundle:User' AS u WITH cp.id = u.id 
-            LEFT JOIN 'SiteSupervisionBundle:VillesFranceFree' AS v WITH cp.id = v.id ");
-        $query->setFirstResult(0);
-        $query->setMaxResults(10);
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute([]);
 
-        return $query->getResult();
+        return $stmt->fetchAll();
 
     }
 

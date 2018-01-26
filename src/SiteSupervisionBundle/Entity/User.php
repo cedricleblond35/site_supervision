@@ -92,7 +92,7 @@ class User implements UserInterface
     /**
      * @var \SiteSupervisionBundle\Entity\Customer
      *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Customer", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Customer", inversedBy="user")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customer;
@@ -100,7 +100,7 @@ class User implements UserInterface
     /**
      * @var \SiteSupervisionBundle\Entity\Employee
      *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Employee", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\Employee", inversedBy="user")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
     private $employee;

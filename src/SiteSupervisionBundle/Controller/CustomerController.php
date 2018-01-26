@@ -96,10 +96,17 @@ class CustomerController extends Controller
         if($form->isSubmitted() && $form->isValid())
         {
             $customerService = $this->container->get('Capvisu.ManagerCustomer');
-            $customerService->create($customer);
-            
-            //créer le message de succes
-            $this->addFlash("success", "Le compte à bien été créé");
+            $result = $customerService->create($customer);
+
+            //message flash
+            if($result)
+            {
+                //créer le message de succes
+                $this->addFlash("success", "Le compte à bien été créé");
+            } else{
+                $this->addFlash("warning", "Une erreur est survenu lors de l'enregistrement.L'administrateur a été prevenu");
+            }
+
 
             return $this->redirectToRoute('customer_index');
 

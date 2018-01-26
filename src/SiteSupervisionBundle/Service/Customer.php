@@ -34,7 +34,7 @@ class Customer
 
     public function create(\SiteSupervisionBundle\Entity\Customer $customer){
         $result = true;
-        $logger = $this->get('logger');
+        $logger = $this->container->get('logger');
         //prepare of user
         $userService = $this->container->get('Capvisu.ManagerUser');
         $user = $userService->prepare($customer->getUser());

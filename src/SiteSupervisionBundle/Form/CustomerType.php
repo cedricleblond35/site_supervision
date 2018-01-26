@@ -56,7 +56,10 @@ class CustomerType extends AbstractType
                 'label' => 'Aménagement PMR'
             ))
             ->add('dateNaissance',BirthdayType::class, array(
+                'required'   => false,
+                'format' => 'dd-MM-yyyy',
                 'attr' => array(),
+                'years' => range(date('Y') - 90, date('Y') + -18),
                 'label' => 'Date de naissance',
             ))
             ->add('adresse1', null, array(

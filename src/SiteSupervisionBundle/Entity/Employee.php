@@ -68,8 +68,7 @@ class Employee
     /**
      * @var \SiteSupervisionBundle\Entity\User
      *
-     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User",inversedBy="employee", cascade={"ALL"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="\SiteSupervisionBundle\Entity\User",mappedBy="employee", cascade={"ALL"})
      *
      */
     private $user;
