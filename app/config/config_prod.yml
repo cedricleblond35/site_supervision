@@ -20,3 +20,13 @@ monolog:
         console:
             type: console
             process_psr_3_messages: false
+        swift:
+            type:       swift_mailer
+            from_email: 'error@capvisu.com'
+            to_email:   'drick35@gmail.com'
+            # or list of recipients
+            # to_email:   ['dev1@example.com', 'dev2@example.com', ...]
+            subject:    'An Error Occurred! %%message%%'
+            level:      debug
+            formatter:  monolog.formatter.html
+            content_type: text/html

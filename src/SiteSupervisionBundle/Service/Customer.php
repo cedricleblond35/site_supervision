@@ -12,6 +12,7 @@ namespace SiteSupervisionBundle\Service;
 use Doctrine\ORM\EntityManager;
 use SiteSupervisionBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class Customer
 {
@@ -32,6 +33,8 @@ class Customer
     }
 
     public function create(\SiteSupervisionBundle\Entity\Customer $customer){
+        $result = true;
+        $logger = $this->get('logger');
         //prepare of user
         $userService = $this->container->get('Capvisu.ManagerUser');
         $user = $userService->prepare($customer->getUser());
@@ -42,10 +45,13 @@ class Customer
         $this->em->beginTransaction();
         try{
             $this->em->flush();
-            $this->em->commit();
+            $result = $this->em->commit();
         }catch (\ErrorException $error){
             $this->em->rollback();
+            $logger->error('Erreur de création d\'un client : ' . $error);
             throw $error;
         }
+        return $result;
+
     }
 }

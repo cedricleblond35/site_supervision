@@ -98,8 +98,6 @@ class CustomerController extends Controller
             $customerService = $this->container->get('Capvisu.ManagerCustomer');
             $customerService->create($customer);
             
-
-
             //créer le message de succes
             $this->addFlash("success", "Le compte à bien été créé");
 
@@ -140,23 +138,20 @@ class CustomerController extends Controller
 
         if(is_numeric($id))
         {
-
             $em = $this->getDoctrine()->getManager();
             $customer = $em->getRepository('SiteSupervisionBundle:Customer')->find($id);
-
         }
+
 
         if(!is_null($customer)) {
             try {
-                //récuperer le client
+                //formulaire de suppression
                 $deleteForm = $this->createDeleteForm($customer);
 
-
                 //******************************* PROBLEME DE LOGIQUE *************************************
-                $editForm = $this->createForm(UserType::class, $customer->getUser(),
+                $editForm = $this->createForm('SiteSupervisionBundle\Form\CustomerType', $customer,
                     array(
-                        'action' => $this->generateUrl('customer_edit', array('id' => $customer->getId())),
-                        'method' => 'POST')
+                        'action' => $this->generateUrl('customer_edit', array('id' => $customer->getId())))
                 );
                 $editForm->handleRequest($request);
             }
@@ -169,7 +164,7 @@ class CustomerController extends Controller
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $user = $customer->getUser();
                 // 3) Encode the password (you could also do this via Doctrine listener)
-                dump($user);
+                dump($customer);
                 die();
                 $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
                 $user->setPassword($password);

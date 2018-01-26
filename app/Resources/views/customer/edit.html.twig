@@ -34,126 +34,126 @@
                     <span class="section">Généralité</span>
 
                     <div class="item form-group">{# dump(form.nom.vars.id) #}
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.civilite.vars.id }}" >{{ form_label(form.customer.civilite) }} <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.civilite.vars.id }}" >{{ form_label(form.civilite) }} <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.civilite) }}
-                            {{ form_errors(form.customer.civilite) }}
+                            {{ form_widget(form.civilite) }}
+                            {{ form_errors(form.civilite) }}
                         </div>
                     </div>
                     <div class="item form-group">{#  dump(form.villesFranceFree.vars) #}
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.nom.vars.id }}" >{{ form_label(form.customer.nom) }} <span class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.nom.vars.id }}" >{{ form_label(form.nom) }} <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.nom) }}
-                            {{ form_errors(form.customer.nom) }}
+                            {{ form_widget(form.nom) }}
+                            {{ form_errors(form.nom) }}
                         </div>
                     </div>
-                    <div class="item form-group">{# dump(form.customer.nom.vars.id) #}
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.prenom.vars.id }}" >{{ form_label(form.customer.prenom) }} <span class="required">*</span>
+                    <div class="item form-group">{# dump(form.nom.vars.id) #}
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.prenom.vars.id }}" >{{ form_label(form.prenom) }} <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.prenom) }}
-                            {{ form_errors(form.customer.prenom) }}
+                            {{ form_widget(form.prenom) }}
+                            {{ form_errors(form.prenom) }}
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.email.vars.id }}">{{ form_label(form.email) }} <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.user.email.vars.id }}">{{ form_label(form.user.email) }} <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.email) }}
-                            {{ form_errors(form.email) }}
+                            {{ form_widget(form.user.email) }}
+                            {{ form_errors(form.user.email) }}
                         </div>
                     </div>
 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.telephonePortable.vars.id }}">{{ form_label(form.customer.telephonePortable) }}<span>&nbsp;</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.telephonePortable.vars.id }}">{{ form_label(form.telephonePortable) }}<span>&nbsp;</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.telephonePortable) }}
-                            {{ form_errors(form.customer.telephonePortable) }}
+                            {{ form_widget(form.telephonePortable) }}
+                            {{ form_errors(form.telephonePortable) }}
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.telephoneFixe.vars.id }}">{{ form_label(form.customer.telephoneFixe) }}<span>&nbsp;</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.telephoneFixe.vars.id }}">{{ form_label(form.telephoneFixe) }}<span>&nbsp;</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.telephoneFixe) }}
-                            {{ form_errors(form.customer.telephoneFixe) }}
+                            {{ form_widget(form.telephoneFixe) }}
+                            {{ form_errors(form.telephoneFixe) }}
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.dateNaissance.vars.id }}">{{  form_label(form.customer.dateNaissance) }}<span>&nbsp;</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.dateNaissance.vars.id }}">{{  form_label(form.dateNaissance) }}<span>&nbsp;</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.dateNaissance) }}
-                            {{ form_errors(form.customer.dateNaissance) }}
+                            {{ form_widget(form.dateNaissance) }}
+                            {{ form_errors(form.dateNaissance) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ form_label(form.customer.pmr) }}</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ form_label(form.pmr) }}</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.pmr) }}
-                            {{ form_errors(form.customer.pmr) }}
+                            {{ form_widget(form.pmr) }}
+                            {{ form_errors(form.pmr) }}
                         </div>
                     </div>
                     <span class="section">Coordonnée</span>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.adresse1.vars.id }}">{{  form_label(form.customer.adresse1)  }} <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.adresse1.vars.id }}">{{  form_label(form.adresse1)  }} <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.adresse1) }}
-                            {{ form_errors(form.customer.adresse1) }}
+                            {{ form_widget(form.adresse1) }}
+                            {{ form_errors(form.adresse1) }}
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.adresse2.vars.id }}">{{  form_label(form.customer.adresse2)  }} <span>&nbsp;</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.adresse2.vars.id }}">{{  form_label(form.adresse2)  }} <span>&nbsp;</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.adresse2) }}
-                            {{ form_errors(form.customer.adresse2) }}
+                            {{ form_widget(form.adresse2) }}
+                            {{ form_errors(form.adresse2) }}
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.villeCodePostal.vars.id }}">{{  form_label(form.customer.villeCodePostal)  }} <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.villeCodePostal.vars.id }}">{{  form_label(form.villeCodePostal)  }} <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.villeCodePostal) }}
-                            {{ form_errors(form.customer.villeCodePostal) }}
+                            {{ form_widget(form.villeCodePostal) }}
+                            {{ form_errors(form.villeCodePostal) }}
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.customer.villesFranceFree.vars.id }}">{{  form_label(form.customer.villesFranceFree)  }} <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.villesFranceFree.vars.id }}">{{  form_label(form.villesFranceFree)  }} <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.villesFranceFree) }}
-                            {{ form_errors(form.customer.villesFranceFree) }}
+                            {{ form_widget(form.villesFranceFree) }}
+                            {{ form_errors(form.villesFranceFree) }}
                         </div>
                     </div>
                     <span class="section">Connexion</span>
                     <div class="item form-group">
-                        <label for="password" class="control-label col-md-3"  for="{{ form.password.first.vars.id }}">
-                            {{  form_label(form.password.first)  }} <span class="required">*</span></label>
+                        <label for="password" class="control-label col-md-3"  for="{{ form.user.password.first.vars.id }}">
+                            {{  form_label(form.user.password.first)  }} <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.password.first) }}
-                            {{ form_errors(form.password.first) }}
+                            {{ form_widget(form.user.password.first) }}
+                            {{ form_errors(form.user.password.first) }}
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label for="password" class="control-label col-md-3"  for="{{ form.password.second.vars.id }}">
-                            {{  form_label(form.password.second)  }} <span class="required">*</span></label>
+                        <label for="password" class="control-label col-md-3"  for="{{ form.user.password.second.vars.id }}">
+                            {{  form_label(form.user.password.second)  }} <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.password.second) }}
-                            {{ form_errors(form.password.second) }}
+                            {{ form_widget(form.user.password.second) }}
+                            {{ form_errors(form.user.password.second) }}
                         </div>
                     </div>
 
                     <span class="section">Divers</span>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.customer.note.vars.id }}">{{  form_label(form.customer.note)  }}
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ form.note.vars.id }}">{{  form_label(form.note)  }}
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ form_widget(form.customer.note) }}
-                            {{ form_errors(form.customer.note) }}
+                            {{ form_widget(form.note) }}
+                            {{ form_errors(form.note) }}
                         </div>
                     </div>
                     <div class="ln_solid"></div>
@@ -163,7 +163,7 @@
                             <button id="send" type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
-                    {{  form_label(form.username)  }}
+                    {{  form_label(form.user.username)  }}
                     {{ form_end(form) }}
 
 
@@ -196,7 +196,7 @@
 
     <script>
         $(document).ready(function(){
-            $('#{{ form.customer.villeCodePostal.vars.id }}').change(function(){
+            $('#{{ form.villeCodePostal.vars.id }}').change(function(){
                         $.ajax({
                             url:'{{ path('customer_new') }}',
                             type: "POST",
@@ -215,9 +215,9 @@
                                 });
 
 
-                                $('#{{ form.customer.villesFranceFree.vars.id }}').empty();
+                                $('#{{ form.villesFranceFree.vars.id }}').empty();
 
-                                $('#{{ form.customer.villesFranceFree.vars.id }}').append(addhtml);;
+                                $('#{{ form.villesFranceFree.vars.id }}').append(addhtml);;
 
 
                             }
