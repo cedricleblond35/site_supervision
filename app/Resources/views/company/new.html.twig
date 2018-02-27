@@ -170,6 +170,9 @@
                         <button id="send" type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </div>
+                {{  dump(form.employees) }}
+                {{  form_widget(form.employees[0].nom)  }}
+                {{  form_widget(form.employees[0].prenom)  }}
                 {{  form_label(user.username)  }}
                 {{ form_end(form) }}
             </div>

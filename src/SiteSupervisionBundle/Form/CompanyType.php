@@ -92,11 +92,13 @@ class CompanyType extends AbstractType
                 [
                     'entry_type' => EmployeeType::class,
                     'entry_options' => [],
+                    //allow_add : Si la valeur est true, alors si des éléments non reconnus sont soumis à la collection, ils seront ajoutés en tant que nouveaux éléments. Le tableau de fin contiendra les éléments existants ainsi que le nouvel élément qui était dans les données soumises. Voir l'exemple ci-dessus pour plus de détails.
                     'allow_add'    => true,
                     'allow_delete' => true,
                     'prototype'    => true,
                     'required'     => false,
                     'delete_empty' => true,
+                    'by_reference' => false
                 ]
             );
     }
