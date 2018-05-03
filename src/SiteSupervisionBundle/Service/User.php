@@ -41,6 +41,11 @@ class User
         
     }
 
+    /**
+     * 
+     * @param \SiteSupervisionBundle\Entity\User $user
+     * @return \SiteSupervisionBundle\Entity\User
+     */
     public function prepare(\SiteSupervisionBundle\Entity\User $user)
     {
         if($user->getPassword() != "")
@@ -56,14 +61,30 @@ class User
         $user->setToken('');
         $user->setConnectionFailure('0');
 
+        if($user->getRoles() == "ROLE_CUSTOMER")
+        {
+            $user->setCustomer($user);
+
+        } elseif ($user->getRoles() == "ROLE_USER_COMPANY_PRINCIPAL")
+        {
+            $company = new Company();
+            $user->setCompany($company);
+        }
+
+
         return $user;
     }
 
+    /**
+     * 
+     * 
+     * @param \SiteSupervisionBundle\Entity\User $user
+     * @throws \ErrorException
+     */
     public function create(\SiteSupervisionBundle\Entity\User $user)
     {
         $user = $this->prepare($user);
 
-        //persister les données
         $this->em->persist($user);
         $this->em->beginTransaction();
         try{
@@ -76,7 +97,12 @@ class User
         }
     }
 
-    public function select(\SiteSupervisionBundle\Entity\User $userForm){
+    /**
+     * 
+     * 
+     * @param \SiteSupervisionBundle\Entity\User $userForm
+     */
+    public function update(\SiteSupervisionBundle\Entity\User $user){
 
     }
 }

@@ -32,9 +32,14 @@ class Customer
         $this->em = $entityManager;
     }
 
+    /**
+     * Create customer persistence
+     * @param \SiteSupervisionBundle\Entity\Customer $customer
+     * @return bool : result of changes
+     */
     public function create(\SiteSupervisionBundle\Entity\Customer $customer){
-        $result = true;
         $logger = $this->container->get('logger');
+        $result = false;
         //prepare of user
         $userService = $this->container->get('Capvisu.ManagerUser');
         $user = $userService->prepare($customer->getUser());
@@ -43,15 +48,48 @@ class Customer
         
         $this->em->persist($customer);
         $this->em->beginTransaction();
-        try{
+        try
+        {
             $this->em->flush();
-            $result = $this->em->commit();
+            $this->em->commit();
+            $result = true;
         }catch (\ErrorException $error){
             $this->em->rollback();
             $logger->error('Erreur de création d\'un client : ' . $error);
-            throw $error;
+        }
+        return $result;
+    }
+
+    /**
+     * Change customer persistence
+     * @param \SiteSupervisionBundle\Entity\Customer $customer
+     * @return bool : result of changes
+     */
+    public function update(\SiteSupervisionBundle\Entity\Customer $customer)
+    {
+        $logger = $this->container->get('logger');
+        $result = false;
+
+        //prepare of user
+        //$userService = $this->container->get('Capvisu.ManagerUser');
+        //$user = $userService->prepare($customer->getUser());
+
+        //$customer->setUser($user);
+
+        $this->em->persist($customer);
+
+        $this->em->beginTransaction();
+        try
+        {
+            $this->em->flush();
+            $this->em->commit();
+            $result = true;
+        }catch (\ErrorException $error){
+            $this->em->rollback();
+            $logger->error('Erreur de création d\'un client : ' . $error);
         }
         return $result;
 
+        
     }
 }

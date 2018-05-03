@@ -31,7 +31,6 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $customers = $em->getRepository('SiteSupervisionBundle:Customer')->findAll();
-
         
         return $this->render('customer/index.html.twig', array(
             'customers' => $customers,
@@ -100,15 +99,14 @@ class CustomerController extends Controller
             //message flash
             if($result)
             {
-                //créer le message de succes
+                //create success message
                 $this->addFlash("success", "Le compte à bien été créé");
-            } else{
+            } else
+            {
+                //create error message
                 $this->addFlash("warning", "Une erreur est survenu lors de l'enregistrement.L'administrateur a été prevenu");
             }
-
-
             return $this->redirectToRoute('customer_index');
-
         }
 
         return $this->render('customer/new.html.twig', array(
@@ -141,23 +139,23 @@ class CustomerController extends Controller
      */
     public function editAction($id, Request $request, Customer $customer)
     {
-
+        //create a customer entity if an identifier exist
         if(is_numeric($id))
         {
             $em = $this->getDoctrine()->getManager();
             $customer = $em->getRepository('SiteSupervisionBundle:Customer')->find($id);
         }
 
-
         if(!is_null($customer)) {
             try {
-                //formulaire de suppression
+                //create a delete form
                 $deleteForm = $this->createDeleteForm($customer);
 
                 //******************************* PROBLEME DE LOGIQUE *************************************
                 $editForm = $this->createForm('SiteSupervisionBundle\Form\CustomerType', $customer,
                     array(
-                        'action' => $this->generateUrl('customer_edit', array('id' => $customer->getId())))
+                        'action' => $this->generateUrl('customer_edit', array('id' => $customer->getId()
+                        )))
                 );
                 $editForm->handleRequest($request);
             }
@@ -166,34 +164,23 @@ class CustomerController extends Controller
                 $this->addFlash("error", "Le client n'a pas été trouvé");
             }
 
-            //traitement du formulaire
+            //form processing
             if ($editForm->isSubmitted() && $editForm->isValid()) {
-                $user = $customer->getUser();
-                // 3) Encode the password (you could also do this via Doctrine listener)
-                dump($customer);
-                die();
-                $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
-                $user->setPassword($password);
-                $user->setLastConnection(new \DateTime());
-                $user->setIsActive(true);
-                $user->setToken('');
-                $user->setConnectionFailure('0');
+                $customerService = $this->container->get('Capvisu.ManagerCustomer');
+                $result = $customerService->update($customer);
 
-                if($user->getRoles() == "ROLE_CUSTOMER")
+                //message flash
+                if($result)
                 {
-                    $user->setCustomer($customer);
-
-                } elseif ($user->getRoles() == "ROLE_USER_COMPANY_PRINCIPAL")
+                    //create success message
+                    $this->addFlash("success", "Le compte à bien été modifier");
+                } else
                 {
-                    $company = new Company();
-                    $user->setCompany($company);
+                    //create error message
+                    $this->addFlash("warning", "Une erreur est survenu lors de l'enregistrement.L'administrateur a été prevenu");
                 }
-
-                // 4) save the User!
-                $this->getDoctrine()->getManager()->flush();
-
                 //créer le message de succes
-                $this->addFlash("success", "Le compte à bien été créé");
+                
 
                 return $this->redirectToRoute('customer_edit', array('id' => $customer->getId()));
             }
@@ -217,9 +204,11 @@ class CustomerController extends Controller
      */
     public function deleteAction($id)
     {
+        //check if the value is a number
         if(is_numeric($id)){
             $id = intval($id);
-            try{
+            try
+            {
                 $repository = $this->getDoctrine()->getRepository('SiteSupervisionBundle:Customer');
                 $customer = $repository->find($id);
 
