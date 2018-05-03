@@ -92,4 +92,28 @@ class Customer
 
         
     }
+
+    /**
+     *
+     * test if two objects are equal in security and re-authentication context
+     * https://stackoverflow.com/questions/13798662/when-are-user-roles-refreshed-and-how-to-force-it
+     * @param \SiteSupervisionBundle\Entity\Customer $user
+     * @return bool
+     */
+    public function isEqualTo(\SiteSupervisionBundle\Entity\Customer  $user) {
+
+        if ($user instanceof \SiteSupervisionBundle\Entity\Customer) {
+            // Check that the roles are the same, in any order
+            $isEqual = count($this->getRoles()) == count($user->getRoles());
+            if ($isEqual) {
+                foreach($this->getRoles() as $role) {
+                    $isEqual = $isEqual && in_array($role, $user->getRoles());
+                }
+            }
+            return $isEqual;
+        }
+
+        return false;
+    }
+
 }

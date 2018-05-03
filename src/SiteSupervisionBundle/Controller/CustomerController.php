@@ -179,9 +179,6 @@ class CustomerController extends Controller
                     //create error message
                     $this->addFlash("warning", "Une erreur est survenu lors de l'enregistrement.L'administrateur a été prevenu");
                 }
-                //créer le message de succes
-                
-
                 return $this->redirectToRoute('customer_edit', array('id' => $customer->getId()));
             }
 
