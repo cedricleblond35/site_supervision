@@ -57,8 +57,7 @@ class CustomerController extends Controller
                     array('villeCodePostal' => $cp),
                     array('villeNom' => 'ASC')
                 );
-
-
+                
                 //si le retour de doctrine est un tableau (plusieurs villes)
                 if (is_array($data))
                 {
