@@ -2,7 +2,7 @@
 
 namespace SiteSupervisionBundle\Form;
 
-
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManager;
 use SiteSupervisionBundle\Entity\Lot;
 use SiteSupervisionBundle\Repository\LotRepository;
@@ -127,10 +127,11 @@ class Construction_siteType extends AbstractType
                     "class" => Lot::class,
                     'multiple' => true,
                     'expanded' => true,
-                    'query_builder' => function (LotRepository $repo) {
+                    'query_builder' => function (EntityRepository $repo) {
                         return $repo->createQueryBuilder('u')
                             ->orderBy('u.numero', 'ASC');
                     },
+                    'choice_label' => 'libelle',
                 )
             )
             ->add('villeCodePostal', NumberType::class, array(

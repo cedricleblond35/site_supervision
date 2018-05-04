@@ -10,5 +10,5 @@ namespace SiteSupervisionBundle\Repository;
  */
 class LotRepository extends \Doctrine\ORM\EntityRepository
 {
-    
+
 }

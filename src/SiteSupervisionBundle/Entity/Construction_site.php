@@ -33,28 +33,28 @@ class Construction_site
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse2", type="string", length=255)
+     * @ORM\Column(name="adresse2", type="string", length=255, nullable=true)
      */
     private $adresse2;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="nbre_pieces", type="smallint")
+     * @ORM\Column(name="nbre_pieces", type="smallint", nullable=true)
      */
     private $nbrePieces;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="surface_sol", type="decimal", precision=6, scale=2)
+     * @ORM\Column(name="surface_sol", type="decimal", precision=6, scale=2, nullable=true)
      */
     private $surfaceSol;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="surface_habitable", type="decimal", precision=6, scale=2)
+     * @ORM\Column(name="surface_habitable", type="decimal", precision=6, scale=2, nullable=true)
      *
      */
     private $surfaceHabitable;
@@ -62,28 +62,28 @@ class Construction_site
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_debut", type="date")
+     * @ORM\Column(name="date_debut", type="date", nullable=true)
      */
     private $dateDebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_fin", type="date")
+     * @ORM\Column(name="date_fin", type="date", nullable=true)
      */
     private $dateFin;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_debut_previ", type="date")
+     * @ORM\Column(name="date_debut_previ", type="date", nullable=true)
      */
     private $dateDebutPrevi;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_fin_previ", type="date")
+     * @ORM\Column(name="date_fin_previ", type="date", nullable=true)
      */
     private $dateFinPrevi;
 
@@ -91,21 +91,21 @@ class Construction_site
     /**
      * @var string
      *
-     * @ORM\Column(name="lien_cctp", type="string", length=255)
+     * @ORM\Column(name="lien_cctp", type="string", length=255, nullable=true)
      */
     private $lien_cctp;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lien_plans", type="string", length=255)
+     * @ORM\Column(name="lien_plans", type="string", length=255, nullable=true)
      */
     private $lien_plans;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lien_devis", type="string", length=255)
+     * @ORM\Column(name="lien_devis", type="string", length=255, nullable=true)
      */
     private $lien_devis;
 

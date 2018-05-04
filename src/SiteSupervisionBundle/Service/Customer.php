@@ -76,6 +76,7 @@ class Customer
 
         //$customer->setUser($user);
 
+
         $this->em->persist($customer);
 
         $this->em->beginTransaction();
@@ -100,7 +101,7 @@ class Customer
      * @param \SiteSupervisionBundle\Entity\Customer $user
      * @return bool
      */
-    public function isEqualTo(\SiteSupervisionBundle\Entity\Customer  $user) {
+    /*public function isEqualTo(\SiteSupervisionBundle\Entity\Customer  $user) {
 
         if ($user instanceof \SiteSupervisionBundle\Entity\Customer) {
             // Check that the roles are the same, in any order
@@ -114,6 +115,6 @@ class Customer
         }
 
         return false;
-    }
+    }*/
 
 }

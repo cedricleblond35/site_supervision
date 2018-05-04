@@ -1,60 +1,143 @@
 {% extends 'base.html.twig' %}
 
+{% block page_title %}Entreprise{% endblock page_title %}
 {% block page_content %}
-    <h1>Company</h1>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Fiche client</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ path('company_edit', { 'id': company.id }) }}" ><i class="fa fa-pencil"></i> Modifier la fiche client</a></li>
+                                <li><a href="{{ path('company_delete', { 'id': company.id }) }}" ><i class="fa fa-trash-o"></i> Supprimer</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a></li>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ company.id }}</td>
-            </tr>
-            <tr>
-                <th>Nomsociete</th>
-                <td>{{ company.nom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse1</th>
-                <td>{{ company.adresse1 }}</td>
-            </tr>
-            <tr>
-                <th>Adresse2</th>
-                <td>{{ company.adresse2 }}</td>
-            </tr>
-            <tr>
-                <th>Telephonefixe</th>
-                <td>{{ company.telephonefixe }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ company.email }}</td>
-            </tr>
-            <tr>
-                <th>Siret</th>
-                <td>{{ company.siret }}</td>
-            </tr>
-            <tr>
-                <th>Ape</th>
-                <td>{{ company.ape }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire</th>
-                <td>{{ company.commentaire }}</td>
-            </tr>
-        </tbody>
-    </table>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img">
+                            <div id="crop-avatar">
+                                <!-- Current avatar -->
+                                <img class="img-responsive avatar-view" src="{{ asset('assets/images/picture.jpg') }}" alt="Avatar" title="Change the avatar">
+                            </div>
+                        </div>
+                        <h3> {{ company.nom }}</h3>
 
-    <ul>
-        <li>
-            <a href="{{ path('company_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('company_edit', { 'id': company.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                        <ul class="list-unstyled user_data">
+                            <li>
+                                <i class="fa fa-map-marker user-profile-icon"></i> {{ company.villesFranceFree.villeDepartement }}, {{ company.villesFranceFree.villeNomReel }}
+                            </li>
+                            <li>
+                                <i class="fa fa-phone user-profile-icon"></i> {{ company.telephoneFixe }}
+                            </li>
+                            <li class="m-top-xs">
+                                <i class="fa fa-envelope-open-o user-profile-icon"></i>
+                                <a href="mailto:?to={{ company.email }}" target="_blank">{{ company.email }}</a>
+                            </li>
+                        </ul>
+                        <br />
+                        <!-- start skills -->
+                        <h4>Détails</h4>
+                        <ul class="list-unstyled user_data">
+                            <li>
+                                <p>siret : {{ company.siret }}</p>
+                            </li>
+
+                            <li>
+                                <h5>Adresse :</h5>
+                                <p>{{ company.adresse1 }}</p>
+                                <p>{{ company.adresse2 }}</p>
+                            </li>
+                        </ul>
+                        <!-- end of skills -->
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Notes sur l'entreprise</a>
+                                </li>
+                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste des chantiers</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                                    <!-- start recent activity -->
+                                    {{ company.commentaire }}
+                                    <!-- end recent activity -->
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                    <a href="{{ path('construction_site_new', { 'id': company.id }) }}" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Créer un dossier chantier</a>
+                                    <!-- start user projects -->
+                                    <table class="data table table-striped no-margin">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Type</th>
+                                            <th>Ville</th>
+                                            <th>CCTP</th>
+                                            <th>Plans</th>
+                                            <th>Surface au sol</th>
+                                            <th>Surface habitable</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="">Construction neuve</a> </td>
+                                            <td>Rennes</td>
+                                            <td><a href="">cctp</a></td>
+                                            <td><a href="">Plans</a></td>
+                                            <td>180</td>
+                                            <td>150</td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end user projects -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+{% block javascripts %}
+
+    <!-- jQuery -->
+    <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('assets/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset('assets/vendors/nprogress/nprogress.js') }}"></script>
+    <!-- morris.js -->
+    <script src="{{ asset('assets/vendors/raphael/raphael.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/morris.js/morris.min.js') }}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{{ asset('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset('assets/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+{% endblock javascripts %}

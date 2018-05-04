@@ -105,7 +105,7 @@ class CompanyController extends Controller
             //dump($user);
             //$em->persist($employee);
             $em->persist($company);
-            dump($company);
+            //dump($company);
             $em->flush();
 
             return $this->redirectToRoute('company_show', array('id' => $company->getId()));
