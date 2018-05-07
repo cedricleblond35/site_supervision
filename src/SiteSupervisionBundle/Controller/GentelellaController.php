@@ -29,10 +29,10 @@ class GentelellaController extends Controller
      */
     public function gentelellaAction(Request $request, $page)
     {
-//        $templateName = basename(sprintf('gentelella/%s.html.twig', $page));
-//        if ($templateName !== sprintf('%s.html.twig', $page)) {
-//            throw $this->createNotFoundException('Page not found');
-//        }
+        $templateName = basename(sprintf('gentelella/%s.html.twig', $page));
+        if ($templateName !== sprintf('%s.html.twig', $page)) {
+            throw $this->createNotFoundException('Page not found');
+        }
 //        if (!$this->get('templating')->exists(sprintf('gentelella/%s', $templateName))) {
 //            throw $this->createNotFoundException(
 //                sprintf(

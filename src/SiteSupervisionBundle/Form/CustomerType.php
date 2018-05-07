@@ -46,10 +46,12 @@ class CustomerType extends AbstractType
             ->add('telephonePortable', TextType::class, array(
                 'attr'  => array('class' => 'form-control col-md-7 col-xs-12', 'data-inputmask' => '\'mask\' : \'99-99-99-99-99\''),
                 'label' => 'Téléphone portable',
+                'required'   => false,
             ))
             ->add('telephoneFixe', TextType::class, array(
                 'attr'  => array('class' => 'form-control col-md-7 col-xs-12', 'data-inputmask' => '\'mask\' : \'99-99-99-99-99\''),
-                'label' => 'Téléphone fixe'
+                'label' => 'Téléphone fixe',
+                'required'   => false,
             ))
             ->add('pmr',  CheckboxType::class, array(
                 'attr' => array('class' => 'btn-group', 'data-toggle' => 'buttons'),

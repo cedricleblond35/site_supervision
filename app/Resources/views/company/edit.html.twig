@@ -1,21 +1,244 @@
 {% extends 'base.html.twig' %}
 
+
+{% block page_title %}Client{% endblock page_title %}
 {% block page_content %}
-    <h1>Company edit</h1>
+    {# message flash ---------------------------------- #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {# message flash ---------------------------------- #}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <!-- page content -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Formulaire de création</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {{ form_start(edit_form, {'attr': {novalidate: 'novalidate', 'class': 'form-horizontal form-label-left'}}) }}
+                    <span class="section">Généralité</span>
+                    <div class="item form-group">{#  dump(edit_form.villesFranceFree.vars) #}
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ edit_form.nom.vars.id }}" >{{ form_label(edit_form.nom) }} <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.nom) }}
+                            {{ form_errors(edit_form.nom) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ edit_form.email.vars.id }}">{{ form_label(edit_form.email) }}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.email) }}
+                            {{ form_errors(edit_form.email) }}
+                        </div>
+                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('company_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ edit_form.telephonefixe.vars.id }}">{{ form_label(edit_form.telephonefixe) }}<span>&nbsp;</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.telephonefixe) }}
+                            {{ form_errors(edit_form.telephonefixe) }}
+                        </div>
+                    </div>
+                    <span class="section">Coordonnée</span>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ edit_form.adresse1.vars.id }}">{{  form_label(edit_form.adresse1)  }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.adresse1) }}
+                            {{ form_errors(edit_form.adresse1) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ edit_form.adresse2.vars.id }}">{{  form_label(edit_form.adresse2)  }} <span>&nbsp;</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.adresse2) }}
+                            {{ form_errors(edit_form.adresse2) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ edit_form.villeCodePostal.vars.id }}">{{  form_label(edit_form.villeCodePostal)  }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.villeCodePostal) }}
+                            {{ form_errors(edit_form.villeCodePostal) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ edit_form.villesFranceFree.vars.id }}">{{  form_label(edit_form.villesFranceFree)  }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.villesFranceFree) }}
+                            {{ form_errors(edit_form.villesFranceFree) }}
+                        </div>
+                    </div>
+                    <span class="section">Contact</span>
+                    {% set employee = edit_form.employees[0] %}
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ employee.nom.vars.id }}">{{ form_label(employee.nom) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(employee.nom) }}
+                            {{ form_errors(employee.nom) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ employee.prenom.vars.id }}">{{ form_label(employee.prenom) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(employee.prenom) }}
+                            {{ form_errors(employee.prenom) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ employee.telephonePortable.vars.id }}">{{ form_label(employee.telephonePortable) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(employee.telephonePortable) }}
+                            {{ form_errors(employee.telephonePortable) }}
+                        </div>
+                    </div>
+                    {% set user = edit_form.employees[0].user %}
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ user.email.vars.id }}">{{ form_label(user.email) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(user.email) }}
+                            {{ form_errors(user.email) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label for="password" class="control-label col-md-3"  for="{{ user.password.first.vars.id }}">
+                            {{  form_label(user.password.first)  }} <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(user.password.first) }}
+                            {{ form_errors(user.password.first) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label for="password" class="control-label col-md-3"  for="{{ user.password.second.vars.id }}">
+                            {{  form_label(user.password.second)  }} <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(user.password.second) }}
+                            {{ form_errors(user.password.second) }}
+                        </div>
+                    </div>
+
+                    <span class="section">Divers</span>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ edit_form.siret.vars.id }}">{{  form_label(edit_form.siret)  }}
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.siret) }}
+                            {{ form_errors(edit_form.siret) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ edit_form.ape.vars.id }}">{{  form_label(edit_form.ape)  }}
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.ape) }}
+                            {{ form_errors(edit_form.ape) }}
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="{{ edit_form.commentaire.vars.id }}">{{  form_label(edit_form.commentaire)  }}
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(edit_form.commentaire) }}
+                            {{ form_errors(edit_form.commentaire) }}
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary">Cancel</button>
+                            <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /page content -->
+
 {% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('assets/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset('assets/vendors/nprogress/nprogress.js') }}"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+    <!-- jquery.inputmask -->
+    <script src="{{ asset('assets/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js') }}"></script>
+
+
+
+    <script>
+        $(document).ready(function(){
+            $('#{{ edit_form.villeCodePostal.vars.id }}').change(function(){
+                        $.ajax({
+                            url:'{{ path('company_new') }}',
+                            type: "POST",
+                            dataType: "json",
+                            data: {
+                                "some_var_name": this.value
+                            },
+                            async: true,
+                            success: function (data)
+                            {
+                                console.log("value : " +data.output);
+                                console.dir(data.output);
+                                var addhtml = '<option value=""></option>';
+                                $.each(data.output, function(id, ville) {
+                                    addhtml += '<option value="' + id +'">' + ville + '</option>' ;
+                                });
+
+
+                                $('#{{ edit_form.villesFranceFree.vars.id }}').empty();
+
+                                $('#{{ edit_form.villesFranceFree.vars.id }}').append(addhtml);;
+
+
+                            }
+                        });
+                        return false;
+                    }
+            )
+        });
+    </script>
+
+{% endblock javascripts %}

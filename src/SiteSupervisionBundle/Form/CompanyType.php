@@ -33,22 +33,23 @@ class CompanyType extends AbstractType
         $builder
             ->add('nom',  TextType::class, array(
                 'label' => 'Nom de la société',
-                'required'   => true,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
+                'required'   => true,
             ))
             ->add('adresse1', null, array(
-                'required'   => true,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
                 'label' => 'Adresse 1',
+                'required'   => true,
             ))
             ->add('adresse2', null, array(
-                'required'   => true,
-                'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'3,20'),
+                'attr' => array('class' => 'form-control col-md-7 col-xs-12'),
                 'label' => 'Adresse 2',
+                'required'   => false,
             ))
             ->add('telephonefixe', TextType::class, array(
                 'attr'  => array('class' => 'form-control col-md-7 col-xs-12', 'data-inputmask' => '\'mask\' : \'99-99-99-99-99\''),
-                'label' => 'Téléphone fixe'
+                'label' => 'Téléphone fixe',
+                'required'   => false,
             ))
             ->add('email', EmailType::class, array(
                 'required'   => true,
@@ -58,18 +59,18 @@ class CompanyType extends AbstractType
             ))
             ->add('siret',  TextType::class, array(
                 'label' => 'Code APE',
-                'required'   => true,
+                'required'   => false,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'14'),
             ))
             ->add('ape',  TextType::class, array(
                 'label' => 'Code APE',
-                'required'   => true,
+                'required'   => false,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'5'),
             ))
             ->add('commentaire', TextareaType::class, array(
-                'required'   => false,
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12'),
                 'label' => 'Notes',
+                'required'   => false,
             ))
             ->add('villeCodePostal', NumberType::class, array(
                 'attr' => array('class' => 'form-control col-md-7 col-xs-12', 'data-validate-length-range' =>'5', 'pattern' => 'numeric'),
@@ -84,8 +85,8 @@ class CompanyType extends AbstractType
                 "class" => "SiteSupervisionBundle:VillesFranceFree",
                 // use the User.username property as the visible option string
                 "choice_label" => "villeNom",
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u');
+                'query_builder' => function (EntityRepository $repo) {
+                    return $repo->createQueryBuilder('u');
                 },
             ])
             ->add('employees', CollectionType::class,

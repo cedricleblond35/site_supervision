@@ -69,7 +69,8 @@ class Construction_siteType extends AbstractType
                     'format' => 'dd-MM-yyyy',
                     'attr' => array(),
                     'years' => range(date('Y') - 10, date('Y') +1),
-                    'label' => 'Début réel'
+                    'label' => 'Début réel',
+                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
                 )
             )
             ->add('dateFin', BirthdayType::class, 
@@ -78,7 +79,8 @@ class Construction_siteType extends AbstractType
                     'format' => 'dd-MM-yyyy',
                     'attr' => array(),
                     'years' => range(date('Y') - 10, date('Y') + 10),
-                    'label' => 'Fin réel'
+                    'label' => 'Fin réel',
+                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
                 )
             )
             ->add('dateDebutPrevi', BirthdayType::class, 
@@ -87,7 +89,8 @@ class Construction_siteType extends AbstractType
                     'format' => 'dd-MM-yyyy',
                     'attr' => array(),
                     'years' => range(date('Y') - 10, date('Y') +1),
-                    'label' => 'Début prévisionnel'
+                    'label' => 'Début prévisionnel',
+                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
                 )
             )
             ->add('dateFinPrevi', BirthdayType::class, 
@@ -96,7 +99,8 @@ class Construction_siteType extends AbstractType
                     'format' => 'dd-MM-yyyy',
                     'attr' => array(),
                     'years' => range(date('Y') - 10, date('Y') + 10),
-                    'label' => 'Fin prévisionnel'
+                    'label' => 'Fin prévisionnel',
+                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
                 )
             )
             ->add('lien_cctp', null, 

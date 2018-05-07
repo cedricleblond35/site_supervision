@@ -75,9 +75,9 @@ class Construction_siteController extends Controller
         //attach customer
         $customer = new Customer();
         $customerArray = $em->getRepository('SiteSupervisionBundle:Customer')->findById($id);
-        dump($customer);
-        die();
-        $construction_site->setCustomer($customer);
+
+        $construction_site->setCustomer($customerArray[0]);
+
         $form = $this->createForm('SiteSupervisionBundle\Form\Construction_siteType', $construction_site);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -88,10 +88,30 @@ class Construction_siteController extends Controller
 
             return $this->redirectToRoute('construction_site_show', array('id' => $construction_site->getId()));
         }
-        $form->setData($customer);
+
+        // Google Maps Geocoder
+        // je ne souhaite pas passer par javascript car il faut une key
+        // la réception peut avoir un statut "OVER_QUERY_LIMIT" car se n'est pas asynchrone donc cela donne un tableau vide,
+        // il faut le tester et faire la requette jusqu'à une réponse
+        $geocoder = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false";
+        $adresse = $customerArray[0]->getAdresse1().','. $customerArray[0]->getAdresse2() . ', ' . $customerArray[0]->getVillesFranceFree()->getVilleCodePostal() . ', ' . $customerArray[0]->getVillesFranceFree()->getVilleNom();
+        do {
+            // Requête envoyée à l'API Geocoding
+            $query = sprintf($geocoder, urlencode(utf8_encode($adresse)));
+            $result = json_decode(file_get_contents($query));
+        } while (count($result->results) ==0);
+
+        $json = $result->results[0];
+
+        $lat = (string) $json->geometry->location->lat;
+        $lng = (string) $json->geometry->location->lng;
+        $geolocalisation = array('lat' => $lat, 'lng' => $lng);
+
+        // fin Google Maps Geocoder
+
         return $this->render('construction_site/new.html.twig', array(
             'construction_site' => $construction_site,
-            'customer' => $customer,
+            'geolocalisation' => $geolocalisation,
             'form' => $form->createView(),
         ));
     }
