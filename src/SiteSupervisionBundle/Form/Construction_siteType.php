@@ -63,44 +63,44 @@ class Construction_siteType extends AbstractType
                     'scale' => 2,
                 )
             )
-            ->add('dateDebut', BirthdayType::class, 
+            ->add('dateDebut', TextType::class,
                 array(
                     'required'   => false,
-                    'format' => 'dd-MM-yyyy',
-                    'attr' => array(),
-                    'years' => range(date('Y') - 10, date('Y') +1),
                     'label' => 'Début réel',
-                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
+                    'attr' => array(
+                        'aria-describedby' => 'inputSuccess2Status',
+                        'class' => 'form-control has-feedback-left',
+                    ),
                 )
             )
-            ->add('dateFin', BirthdayType::class, 
+            ->add('dateFin', TextType::class,
                 array(
                     'required'   => false,
-                    'format' => 'dd-MM-yyyy',
-                    'attr' => array(),
-                    'years' => range(date('Y') - 10, date('Y') + 10),
-                    'label' => 'Fin réel',
-                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
+                    'label' => 'Date de fin réél',
+                    'attr' => array(
+                        'aria-describedby' => 'inputSuccess2Status',
+                        'class' => 'form-control has-feedback-left',
+                    ),
                 )
             )
-            ->add('dateDebutPrevi', BirthdayType::class, 
+            ->add('dateDebutPrevi', TextType::class,
                 array(
                     'required'   => false,
-                    'format' => 'dd-MM-yyyy',
-                    'attr' => array(),
-                    'years' => range(date('Y') - 10, date('Y') +1),
-                    'label' => 'Début prévisionnel',
-                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
+                    'label' => 'Date de début prévisionnel',
+                    'attr' => array(
+                        'aria-describedby' => 'inputSuccess2Status',
+                        'class' => 'form-control has-feedback-left',
+                    ),
                 )
             )
-            ->add('dateFinPrevi', BirthdayType::class, 
+            ->add('dateFinPrevi', TextType::class,
                 array(
                     'required'   => false,
-                    'format' => 'dd-MM-yyyy',
-                    'attr' => array(),
-                    'years' => range(date('Y') - 10, date('Y') + 10),
-                    'label' => 'Fin prévisionnel',
-                    'attr' => array('class' => 'input-mini form-control active', 'style'=>'display:none;'),
+                    'label' => 'Date de fin prévisionnel',
+                    'attr' => array(
+                        'aria-describedby' => 'inputSuccess2Status',
+                        'class' => 'form-control has-feedback-left',
+                    ),
                 )
             )
             ->add('lien_cctp', null, 

@@ -73,16 +73,24 @@ class Construction_siteController extends Controller
 
         $construction_site = new Construction_site();
         //attach customer
-        $customer = new Customer();
         $customerArray = $em->getRepository('SiteSupervisionBundle:Customer')->findById($id);
 
         $construction_site->setCustomer($customerArray[0]);
 
         $form = $this->createForm('SiteSupervisionBundle\Form\Construction_siteType', $construction_site);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $customer = new Customer();
+            $customer = $em->getRepository('SiteSupervisionBundle:Customer')->find($id);
+
+            $construction_site->setCustomer($customer);
+
+            dump($form)
+                ;
+            die();
             $em->persist($construction_site);
             $em->flush();
 
